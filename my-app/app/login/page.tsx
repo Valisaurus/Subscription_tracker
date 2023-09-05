@@ -11,7 +11,27 @@ export default function Login() {
       }`}
     >
       <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
-      <LoginForm lightMode={lightMode} />
+      <div className="flex flex-col justify-around items-center h-screen py-14">
+        <div>
+          <h2
+            className={`text-6xl text-center ${
+              lightMode ? "text-black" : "text-white"
+            }`}
+          >
+            CTRL+
+          </h2>
+          <i
+            className={`text-xs text-center ${
+              lightMode ? "text-black" : "text-white"
+            }`}
+          >
+            Take ctrl of your streaming subscriptions
+          </i>
+        </div>
+        <div>
+          <LoginForm lightMode={lightMode} />
+        </div>
+      </div>
     </div>
   );
 }
