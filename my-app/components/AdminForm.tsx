@@ -1,7 +1,7 @@
 export default function AdminForm() {
   return (
     <div>
-      <form action="/form">
+      <form action="/Admin/AdminForm" method="POST">
         <label htmlFor="name">Enter name:</label>
         <input type="text" name="name" />
         <label htmlFor="price">Enter price:</label>
