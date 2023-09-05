@@ -6,13 +6,13 @@ export default function Login() {
   const [lightMode, setLightMode] = useState<boolean>(false);
   return (
     <div
-      className={`flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 ${
+      className={`flex-1 flex flex-col w-full justify-center gap-2 ${
         lightMode ? "bg-slate-50" : "bg-black"
       }`}
     >
       <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
-      <div className="flex flex-col justify-around items-center h-screen py-14">
-        <div>
+      <div className="flex flex-col justify-around items-center h-screen py-24">
+        <div className="">
           <h2
             className={`text-6xl text-center ${
               lightMode ? "text-black" : "text-white"

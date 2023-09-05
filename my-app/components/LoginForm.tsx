@@ -19,43 +19,31 @@ const LoginForm = ({ lightMode }: LoginForm) => {
 
   return (
     <form
-      className={`flex-1 flex flex-col w-full justify-center gap-2 text-foreground ${
+      className={`flex-1 flex flex-col w-screen justify-center items-center gap-2 text-foreground px-4 ${
         lightMode ? "text-black" : "text-white"
       }`}
       action="/auth/sign-in"
       method="post"
     >
-      <label
-        className={`${lightMode ? "text-black" : "text-white"}`}
-        htmlFor="email"
-      >
-        Email
-      </label>
       <input
-        className="rounded-md px-4 py-2 bg-inherit border mb-6"
+        className="px-4 py-2 bg-inherit border mb-6 w-full"
         name="email"
-        placeholder="you@example.com"
+        placeholder="email@here.com"
         required
       />
-      <label
-        className={`${lightMode ? "text-black" : "text-white"}`}
-        htmlFor="password"
-      >
-        Password
-      </label>
       <input
-        className="rounded-md px-4 py-2 bg-inherit border mb-6"
+        className="px-4 py-2 bg-inherit border mb-6 w-full"
         type="password"
         name="password"
-        placeholder="••••••••"
+        placeholder="password"
         required
       />
-      <button className={`bg-green-700 rounded px-4 py-2  mb-2 text-white`}>
+      <button className={`bg-green-700 px-4 py-2 mb-2 w-[250px] text-white`}>
         Sign In
       </button>
       <button
         formAction="/auth/sign-up"
-        className={`border border-gray-700 rounded px-4 py-2 mb-2 ${
+        className={`border border-gray-700 px-4 py-2 mb-2 w-[200px] ${
           lightMode ? "text-black" : "text-white"
         }`}
       >
@@ -63,7 +51,7 @@ const LoginForm = ({ lightMode }: LoginForm) => {
       </button>
       <button
         formAction="/auth/reset"
-        className={`border border-gray-700 rounded px-4 py-2 mb-2 ${
+        className={`border border-gray-700 px-4 py-2 mb-2 w-[180px] ${
           lightMode ? "text-black" : "text-white"
         }`}
       >
