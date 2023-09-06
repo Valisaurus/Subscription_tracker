@@ -18,7 +18,7 @@ export default function Login() {
             </i>
           </div>
           <div>
-            <LoginForm lightMode={lightMode} />
+            <LoginForm />
           </div>
         </div>
       </div>

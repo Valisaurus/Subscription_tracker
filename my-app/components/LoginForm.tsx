@@ -1,10 +1,6 @@
 import Messages from "@/app/login/messages";
 
-type LoginForm = {
-  lightMode: boolean;
-};
-
-const LoginForm = ({ lightMode }: LoginForm) => {
+const LoginForm = () => {
   return (
     <form
       className="flex-1 flex flex-col w-screen justify-center items-center gap-2 text-foreground px-4 text-black dark:text-white"
