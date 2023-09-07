@@ -2,8 +2,6 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
-import SupabaseLogo from "../components/SupabaseLogo";
-import NextJsLogo from "../components/NextJsLogo";
 import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -22,7 +20,17 @@ export default async function Index() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  return (
+  const { error, data } = await supabase
+    .from("subscriptions_users")
+    .select("*")
+    .match({ user_id: user?.id });
+
+  if (error) {
+    console.log(error);
+  }
+  console.log(data);
+
+  return data ? (
     <div className="">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
         <div className="w-full max-w-4xl flex justify-center items-center p-3 text-sm text-foreground">
@@ -36,5 +44,7 @@ export default async function Index() {
         </div>
       </nav>
     </div>
+  ) : (
+    <div></div>
   );
 }
