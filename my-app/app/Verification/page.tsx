@@ -20,7 +20,12 @@ const VerificationPage = () => {
               </h2>
               <h3>This is the verification page</h3>
               <div>
-                <p>You've got mail!!!</p>
+                <h2>Confirm your signup</h2>
+
+                <p>Follow this link to confirm your user:</p>
+                <p>
+                  <a href="{{ .ConfirmationURL }}">Confirm your mail</a>
+                </p>
               </div>
             </div>
           </div>
