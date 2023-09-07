@@ -1,15 +1,13 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import Link from "next/link";
-import LogoutButton from "../components/LogoutButton";
-import ServiceForm from "@/components/ServiceForm";
 import { redirect } from "next/navigation";
-import Logo from "@/components/Logo";
+import Services from "./services/service";
 
 export const dynamic = "force-dynamic";
 
 export default async function Index() {
   const supabase = createServerComponentClient({ cookies });
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -23,20 +21,19 @@ export default async function Index() {
   } = await supabase.auth.getUser();
 
   const { error, data } = await supabase
-    .from("subscriptions_users")
-    .select("*")
-    .match({ user_id: user?.id });
+    .from("subscriptions")
+    .select("name, price, subscriptions_users (user_id, subscription_id)");
 
-  if (error) {
-    console.log(error);
-  }
-  console.log(data);
-
-  return (
-    <div className="">
-      <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <Logo />
-      </nav>
-    </div>
+  const services: { name: string; price: number }[] | undefined = data?.map(
+    (service: { name: string; price: number }) => {
+      return { name: service?.name, price: service?.price };
+    }
   );
+
+  const totalPrice: number | undefined = data?.reduce((accumulator, total) => {
+    console.log("Total Price:", total.price);
+    return accumulator + total.price;
+  }, 0);
+
+  return <Services services={services} totalPrice={totalPrice} />;
 }
