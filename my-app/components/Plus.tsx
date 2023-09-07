@@ -10,8 +10,8 @@ const Plus = ({ isVisible, setIsVisible }: PlusProps) => {
         className="relative w-[70px] h-[70px]"
         onClick={() => setIsVisible(!isVisible)}
       >
-        <div className="absolute w-full h-[8px] bg-black top-[31px]" />
-        <div className="absolute w-[8px] h-full bg-black left-[31px]" />
+        <div className="absolute w-full h-[8px] bg-black dark:bg-white top-[31px]" />
+        <div className="absolute w-[8px] h-full bg-black dark:bg-white left-[31px]" />
       </div>
     </div>
   );
