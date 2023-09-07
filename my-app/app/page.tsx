@@ -4,6 +4,7 @@ import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
 import ServiceForm from "@/components/ServiceForm";
 import { redirect } from "next/navigation";
+import Logo from "@/components/Logo";
 
 export const dynamic = "force-dynamic";
 
@@ -26,28 +27,16 @@ export default async function Index() {
     .select("*")
     .match({ user_id: user?.id });
 
-  const insertion = await supabase.from("users").insert({});
-
   if (error) {
     console.log(error);
   }
   console.log(data);
 
-  return data ? (
+  return (
     <div className="">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-4xl flex justify-center items-center p-3 text-sm text-foreground">
-          <Link
-            href="/login"
-            className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-          >
-            Login
-          </Link>
-          <LogoutButton />
-        </div>
+        <Logo />
       </nav>
     </div>
-  ) : (
-    <div></div>
   );
 }

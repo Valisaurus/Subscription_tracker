@@ -3,7 +3,6 @@ import { useState } from "react";
 import LightSwitch from "@/components/LightSwitch";
 import LoginForm from "@/components/LoginForm";
 import Logo from "@/components/Logo";
-import TermsAndConditions from "@/components/TermsAndConditions";
 
 export default function Login() {
   const [lightMode, setLightMode] = useState<boolean>(false);
