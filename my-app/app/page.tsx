@@ -26,6 +26,8 @@ export default async function Index() {
     .select("*")
     .match({ user_id: user?.id });
 
+  const insertion = await supabase.from("users").insert({});
+
   if (error) {
     console.log(error);
   }
