@@ -2,6 +2,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
+import ServiceForm from "@/components/ServiceForm";
 import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
