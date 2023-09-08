@@ -3,14 +3,14 @@ import Messages from "@/app/login/messages";
 export const dynamic = "force-dynamic";
 
 type ServiceFormProps = {
-  services: { name: string; price: number }[] | undefined;
+  services: { id: number; name: string; price: number }[] | undefined;
   isVisible: boolean;
 };
 
 const ServiceForm = ({ services, isVisible }: ServiceFormProps) => {
   const mappedServices =
     services?.map((service) => (
-      <option key={service.name} value={service.name}>
+      <option key={service.name} value={service.id}>
         {service.name} {service.price}kr
       </option>
     )) ?? [];
@@ -21,7 +21,7 @@ const ServiceForm = ({ services, isVisible }: ServiceFormProps) => {
           <div className="mb-6">
             <select
               className="px-4 py-2 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-6"
-              name="services"
+              name="subscription_id"
               required
             >
               {mappedServices}
