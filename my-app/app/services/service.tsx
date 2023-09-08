@@ -5,8 +5,9 @@ import LightSwitch from "@/components/LightSwitch";
 import { useState } from "react";
 import TotalPrice from "@/components/TotalPrice";
 import Plus from "@/components/Plus";
+
 type ServicesProps = {
-  services: { name: string; price: number }[] | undefined;
+  services: { id: number; name: string; price: number }[] | undefined;
   totalPrice: number | undefined;
 };
 
