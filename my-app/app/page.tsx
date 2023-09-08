@@ -2,11 +2,13 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Services from "./services/service";
+import { Database } from "@/lib/database.types";
+import { stringify } from "querystring";
 
 export const dynamic = "force-dynamic";
 
 export default async function Index() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
     data: { session },
@@ -20,20 +22,26 @@ export default async function Index() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { error, data } = await supabase
+  const fetchSubscriptions: { name: string; price: number }[] = await supabase
     .from("subscriptions")
-    .select("name, price, subscriptions_users (user_id, subscription_id)");
+    .select("name, price");
 
-  const services: { name: string; price: number }[] | undefined = data?.map(
-    (service: { name: string; price: number }) => {
+  const subscriptions = fetchSubscriptions.data;
+
+  console.log(subscriptions);
+
+  const services: { name: string; price: number }[] | undefined =
+    subscriptions?.map((service: { name: string; price: number }) => {
       return { name: service?.name, price: service?.price };
-    }
-  );
+    });
 
-  const totalPrice: number | undefined = data?.reduce((accumulator, total) => {
-    console.log("Total Price:", total.price);
-    return accumulator + total.price;
-  }, 0);
+  const totalPrice: number | undefined = subscriptions?.reduce(
+    (accumulator, total) => {
+      console.log("Total Price:", total.price);
+      return accumulator + total.price;
+    },
+    0
+  );
 
   return <Services services={services} totalPrice={totalPrice} />;
 }
