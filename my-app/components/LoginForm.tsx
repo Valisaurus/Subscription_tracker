@@ -19,18 +19,20 @@ const LoginForm = ({ setRenderTopLogo }: LoginFormProps) => {
     </div>
   ) : (
     <div>
-      {isResetPasswordVisible ?? (
+      {isResetPasswordVisible ? (
         <PasswordReset
           isVisible={isResetPasswordVisible}
           setIsVisible={setIsResetPasswordVisible}
         />
+      ) : (
+        <div></div>
       )}
       <form action="/auth/sign-in" method="post">
         <div className="flex-1 flex flex-col w-screen justify-center items-center gap-2 text-foreground px-4 text-black dark:text-white">
           <div className="flex flex-col justify-center items-center">
-            <div className="mb-6">
+            <div className="mb-6 w-[300px]">
               <input
-                className="px-4 py-2 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-6"
+                className="px-4 py-2 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-6 h-[50px]"
                 type="email"
                 name="email"
                 value={email}
@@ -64,10 +66,11 @@ const LoginForm = ({ setRenderTopLogo }: LoginFormProps) => {
               Sign Up
             </button>
             <button
-              onClick={() => {
+              onClick={(e: any) => {
+                e.preventDefault();
                 setIsResetPasswordVisible(true);
               }}
-              className="border border-gray-700 px-4 py-2 mb-2 w-[180px] text-black dark:text-white"
+              className="  px-4 py-2 mb-2 w-[180px] text-black dark:text-white"
             >
               Forgot password?
             </button>
