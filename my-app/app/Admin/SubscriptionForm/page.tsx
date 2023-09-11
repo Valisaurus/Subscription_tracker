@@ -31,21 +31,18 @@ export default async function AdminForm() {
 
   const subscriptions = fetchSubscriptions.data;
 
-  console.log(subscriptions);
-
   const services: { name: string; price: number }[] | undefined =
     subscriptions?.map((service: { name: string; price: number }) => {
       return { name: service?.name, price: service?.price };
     });
 
   const totalPrice: number | undefined = subscriptions?.reduce(
-    (accumulator, total) => {
-      console.log("Total Price:", total.price);
-      return accumulator + total.price;
+    (accumulator, service) => {
+      //console.log("Total Price:", service.price);
+      return accumulator + service.price;
     },
     0
   );
-
   return (
     <div>
       <form action={handleForm} method="POST">

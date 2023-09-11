@@ -1,11 +1,12 @@
 type TotalPriceProps = {
-  totalPrice: number | undefined;
+  totalPriceMonthly: number | undefined;
 };
 
-const TotalPrice = ({ totalPrice }: TotalPriceProps) => {
-  return totalPrice ? (
+const TotalPrice = ({ totalPriceMonthly }: TotalPriceProps) => {
+  return totalPriceMonthly ? (
     <div className="text-black dark:text-white">
-      <p>your price is {totalPrice}</p>
+      <p>Your monthly price is: {totalPriceMonthly}</p>
+      <p>Your yearly price is: {totalPriceMonthly * 12}</p>
     </div>
   ) : (
     <div className="text-white dark:text-black">

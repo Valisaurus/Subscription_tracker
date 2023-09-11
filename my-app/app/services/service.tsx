@@ -7,11 +7,11 @@ import TotalPrice from "@/components/TotalPrice";
 import Plus from "@/components/Plus";
 
 type ServicesProps = {
-  services: { id: number; name: string; price: number }[] | undefined;
-  totalPrice: number | undefined;
+  services: { id: number; name: string; price: number }[] | null;
+  totalPriceMonthly: number | undefined;
 };
 
-const Services = ({ services, totalPrice }: ServicesProps) => {
+const Services = ({ services, totalPriceMonthly }: ServicesProps) => {
   const [lightMode, setLightMode] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   return (
@@ -19,7 +19,7 @@ const Services = ({ services, totalPrice }: ServicesProps) => {
       <div className="flex-1 flex flex-col w-screen justify-center gap-2 bg-white dark:bg-black h-screen">
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
-        <TotalPrice totalPrice={totalPrice} />
+        <TotalPrice totalPriceMonthly={totalPriceMonthly} />
         <ServiceForm services={services} isVisible={isVisible} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />
       </div>

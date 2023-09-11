@@ -28,7 +28,7 @@ export default async function Index() {
     .select("id, name, price");
 
   const subscriptions: { id: number; name: string; price: number }[] | null =
-    fetchSubscriptions?.data;
+    fetchSubscriptions.data;
 
   console.log(subscriptions);
 
@@ -39,7 +39,7 @@ export default async function Index() {
 
   const subscriptions_users:
     | { user_id: number; subscription_id: number }[]
-    | null = fetchSubscriptions_users.data;
+    | null = fetchSubscriptions_users?.data;
 
   console.log(subscriptions_users);
 
@@ -67,20 +67,16 @@ export default async function Index() {
     subscriptions_users
   );
   console.log(namesAndPrices);
-  const services: { id: number; name: string; price: number }[] | undefined =
-    subscriptions?.map(
-      (service: { id: number; name: string; price: number }) => {
-        return { id: service?.id, name: service?.name, price: service?.price };
-      }
-    );
 
-  const totalPrice: number | undefined = namesAndPrices?.reduce(
+  const totalPriceMonthly: number | undefined = namesAndPrices?.reduce(
     (accumulator, total) => {
-      console.log("Total Price:", total?.subscription_price);
-      return accumulator + total?.subscription_price;
+      console.log("Total Price:", total?.price);
+      return accumulator + total?.price;
     },
     0
   );
 
-  return <Services services={services} totalPrice={totalPrice} />;
+  return (
+    <Services services={subscriptions} totalPriceMonthly={totalPriceMonthly} />
+  );
 }
