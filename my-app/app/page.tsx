@@ -7,7 +7,7 @@ import { Database } from "@/lib/database.types";
 export const dynamic = "force-dynamic";
 
 export default async function Index() {
-  const supabase = createServerComponentClient<Database["public"]["Tables"]>({
+  const supabase = createServerComponentClient({
     cookies,
   });
 
@@ -23,12 +23,25 @@ export default async function Index() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const fetchSubscriptions = await supabase
-    .from("subscriptions")
-    .select("id, name, price");
+  const fetchServices = await supabase.from("services").select("*");
+  const services: { id: number; name: string }[] | null = fetchServices.data;
+  console.log(services);
 
-  const subscriptions: { id: number; name: string; price: number }[] | null =
-    fetchSubscriptions.data;
+  const fetchSubscriptions: {
+    data:
+      | {
+          id: number;
+          name: string;
+          price: number;
+          trial_price: number;
+          service_id: number;
+        }[]
+      | null;
+  } = await supabase.from("subscriptions").select("*");
+
+  const subscriptions:
+    | { id: number; name: string; price: number; service_id: number }[]
+    | null = fetchSubscriptions.data;
 
   console.log(subscriptions);
 
@@ -43,30 +56,46 @@ export default async function Index() {
 
   console.log(subscriptions_users);
 
-  const getSubscriptionNames = (
-    subscriptions: { id: number; name: string; price: number }[] | null,
+  const compareAndCreateResult = (
+    subscriptions:
+      | {
+          id: number;
+          name: string;
+          price: number;
+          service_id: number;
+        }[]
+      | null,
+    services: { id: number; name: string }[] | null,
     subscriptions_users: { user_id: number; subscription_id: number }[] | null
   ) => {
-    const subscriptionNames = subscriptions_users?.map((user) => {
-      const matchingSubscription = subscriptions?.find(
-        (sub) => sub.id === user.subscription_id
+    const result = [];
+
+    for (const userSubscription of subscriptions_users) {
+      const subscription = subscriptions?.find(
+        (sub) => sub.id === userSubscription.subscription_id
       );
-      return matchingSubscription
-        ? {
-            name: matchingSubscription.name,
-            price: matchingSubscription.price,
-          }
-        : null;
-    });
+      if (subscription) {
+        const service = services?.find(
+          (serv) => serv.id === subscription.service_id
+        );
+        if (service) {
+          result.push({
+            service_name: service.name,
+            subscription_name: subscription.name,
+            price: subscription.price, // Assuming price is a string that needs to be converted to a number
+          });
+        }
+      }
+    }
 
-    return subscriptionNames?.filter((name) => name !== null);
+    return result;
   };
-
-  const namesAndPrices = getSubscriptionNames(
+  const namesAndPrices = compareAndCreateResult(
     subscriptions,
+    services,
     subscriptions_users
   );
-  console.log(namesAndPrices);
+  console.log("RESULT: ", namesAndPrices);
 
   const totalPriceMonthly: number | undefined = namesAndPrices?.reduce(
     (accumulator, total) => {
