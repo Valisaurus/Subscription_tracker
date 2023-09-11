@@ -51,19 +51,19 @@ const LoginForm = ({ setRenderTopLogo }: LoginFormProps) => {
               />
             </div>
             <button
-              className={`bg-green-700 px-4 py-2 mb-2 w-[250px] text-white`}
+              className={`bg-white dark:bg-black border-4 border-black dark:border-white px-4 py-2 mb-2 w-[250px] text-black dark:text-white`}
             >
-              Sign In
+              Login
             </button>
             <button
-              className="border border-gray-700 px-4 py-2 mb-2 w-[200px] text-black dark:text-white"
+              className="bg-white dark:bg-black border-4 border-black dark:border-white px-4 py-2 mb-2 w-[200px] text-black dark:text-white"
               onClick={(e: any) => {
                 e.preventDefault();
                 setRenderTerms(true);
                 setRenderTopLogo(true);
               }}
             >
-              Sign Up
+              Create User
             </button>
             <button
               onClick={(e: any) => {

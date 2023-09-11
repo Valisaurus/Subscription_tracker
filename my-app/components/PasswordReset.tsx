@@ -15,7 +15,10 @@ const PasswordReset = ({ isVisible, setIsVisible }: PasswordResetProps) => {
           method="post"
           className="flex flex-col justify-around items-center text-center w-[320px] h-[250px] p-4"
         >
-          <label htmlFor="email" className="text-[20px]">
+          <label
+            htmlFor="email"
+            className="text-[20px] text-black dark:text-white"
+          >
             Forgot password?
           </label>
           <input

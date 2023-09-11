@@ -22,8 +22,8 @@ const TermsAndConditions = ({ email, password }: TermsAndConditionsProps) => {
       <form action="/auth/sign-up" method="post">
         <input type="hidden" name="email" value={email} />
         <input type="hidden" name="password" value={password} />
-        <button className="w-[200px] h-[40px] border-black border-2 dark:border-white text-black dark:text-white mt-[30px]">
-          Accept terms&conditions
+        <button className="w-[250px] h-[40px] border-black border-4 dark:border-white text-black dark:text-white mt-[30px]">
+          Accept
         </button>
       </form>
     </div>
