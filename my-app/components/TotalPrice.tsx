@@ -1,5 +1,6 @@
 type TotalPriceProps = {
-  totalPriceMonthly: number | undefined;
+  services: { id: number; name: string }[] | null;
+  subscription_users: { user_id: number; subscription_id: number }[] | null;
 };
 
 const TotalPrice = ({ totalPriceMonthly }: TotalPriceProps) => {

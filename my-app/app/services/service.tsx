@@ -5,13 +5,16 @@ import LightSwitch from "@/components/LightSwitch";
 import { useState } from "react";
 import TotalPrice from "@/components/TotalPrice";
 import Plus from "@/components/Plus";
-
+import { services, subscriptions, subscriptions_users } from "../global";
 type ServicesProps = {
-  services: { id: number; name: string; price: number }[] | null;
-  totalPriceMonthly: number | undefined;
+  data: {
+    subscriptions: subscriptions;
+    services: services;
+    subscriptions_users: subscriptions_users;
+  };
 };
 
-const Services = ({ services, totalPriceMonthly }: ServicesProps) => {
+const Services = ({ data }: ServicesProps) => {
   const [lightMode, setLightMode] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   return (

@@ -9,40 +9,77 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      services: {
+        Row: {
+          id: number
+          name: string | null
+        }
+        Insert: {
+          id?: number
+          name?: string | null
+        }
+        Update: {
+          id?: number
+          name?: string | null
+        }
+        Relationships: []
+      }
       subscriptions: {
         Row: {
           id: number
           name: string | null
           price: number | null
-          trial_length_days: number | null
+          service_id: number | null
+          trial_period_days: number | null
+          trial_price: number | null
         }
         Insert: {
           id?: number
           name?: string | null
           price?: number | null
-          trial_length_days?: number | null
+          service_id?: number | null
+          trial_period_days?: number | null
+          trial_price?: number | null
         }
         Update: {
           id?: number
           name?: string | null
           price?: number | null
-          trial_length_days?: number | null
+          service_id?: number | null
+          trial_period_days?: number | null
+          trial_price?: number | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_service_id_fkey"
+            columns: ["service_id"]
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       subscriptions_users: {
         Row: {
+          active: boolean
+          had_trial: boolean
           id: number
+          start_date: string | null
           subscription_id: number | null
           user_id: string | null
         }
         Insert: {
+          active?: boolean
+          had_trial?: boolean
           id?: number
+          start_date?: string | null
           subscription_id?: number | null
           user_id?: string | null
         }
         Update: {
+          active?: boolean
+          had_trial?: boolean
           id?: number
+          start_date?: string | null
           subscription_id?: number | null
           user_id?: string | null
         }
@@ -56,34 +93,6 @@ export interface Database {
           {
             foreignKeyName: "subscriptions_users_user_id_fkey"
             columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      users: {
-        Row: {
-          had_free_trial: boolean | null
-          id: number
-          start_date: string | null
-          uuid: string | null
-        }
-        Insert: {
-          had_free_trial?: boolean | null
-          id?: number
-          start_date?: string | null
-          uuid?: string | null
-        }
-        Update: {
-          had_free_trial?: boolean | null
-          id?: number
-          start_date?: string | null
-          uuid?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "users_uuid_fkey"
-            columns: ["uuid"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }

@@ -2,12 +2,13 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Services from "./services/service";
+import { services } from "./global";
 import { Database } from "@/lib/database.types";
 
 export const dynamic = "force-dynamic";
 
 export default async function Index() {
-  const supabase = createServerComponentClient({
+  const supabase = createServerComponentClient<Database["public"]["Tables"]>({
     cookies,
   });
 
@@ -23,8 +24,8 @@ export default async function Index() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const fetchServices = await supabase.from("services").select("*");
-  const services: { id: number; name: string }[] | null = fetchServices.data;
+  const { data } = await supabase.from<services>("services").select("*");
+
   console.log(services);
 
   const fetchSubscriptions: {
@@ -90,6 +91,7 @@ export default async function Index() {
 
     return result;
   };
+
   const namesAndPrices = compareAndCreateResult(
     subscriptions,
     services,
@@ -105,7 +107,12 @@ export default async function Index() {
     0
   );
 
-  return (
-    <Services services={subscriptions} totalPriceMonthly={totalPriceMonthly} />
-  );
+  const data: {
+    subscriptions:
+      | { id: number; name: string; price: number; service_id: number }[]
+      | null;
+    services: { id: number; name: string }[] | null;
+    subscriptions_users: { user_id: number; subscription_id: number }[] | null;
+  } = { subscriptions, services, subscriptions_users };
+  return <Services data={data} />;
 }
