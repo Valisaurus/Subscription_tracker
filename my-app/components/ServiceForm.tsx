@@ -3,7 +3,11 @@ import Messages from "@/app/login/messages";
 export const dynamic = "force-dynamic";
 
 type ServiceFormProps = {
-  services: { id: number; name: string; price: number }[] | null;
+  SubscriptionsAndServices: Array<{
+    service_name: string | null;
+    subscription_name: string | null;
+    price: number | null;
+  }>;
   isVisible: boolean;
 };
 
