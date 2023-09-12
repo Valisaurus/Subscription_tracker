@@ -37,6 +37,7 @@ const Services = ({ data }: ServicesProps) => {
           result.push({
             service_name: service.name,
             subscription_name: subscription.name,
+            subscription_id: subscription.id,
             price: subscription.price,
           });
         }

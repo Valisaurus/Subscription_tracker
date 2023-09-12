@@ -6,16 +6,20 @@ type ServiceFormProps = {
   SubscriptionsAndServices: Array<{
     service_name: string | null;
     subscription_name: string | null;
+    subscription_id: number;
     price: number | null;
   }>;
   isVisible: boolean;
 };
 
-const ServiceForm = ({ services, isVisible }: ServiceFormProps) => {
+const ServiceForm = ({
+  SubscriptionsAndServices,
+  isVisible,
+}: ServiceFormProps) => {
   const mappedServices =
-    services?.map((service) => (
-      <option key={service.name} value={service.id}>
-        {service.name} {service.price}kr
+    SubscriptionsAndServices?.map((subSer) => (
+      <option key={subSer.service_name} value={subSer.subscription_id}>
+        {subSer.service_name} - {subSer.subscription_name} {subSer.price}kr
       </option>
     )) ?? [];
   return isVisible ? (
