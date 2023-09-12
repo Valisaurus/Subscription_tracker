@@ -3,12 +3,12 @@ import Messages from "@/app/login/messages";
 export const dynamic = "force-dynamic";
 
 type ServiceFormProps = {
-  SubscriptionsAndServices: Array<{
+  SubscriptionsAndServices: {
     service_name: string | null;
     subscription_name: string | null;
+    subscription_price: number | null;
     subscription_id: number;
-    price: number | null;
-  }>;
+  }[];
   isVisible: boolean;
 };
 
@@ -19,7 +19,8 @@ const ServiceForm = ({
   const mappedServices =
     SubscriptionsAndServices?.map((subSer) => (
       <option key={subSer.service_name} value={subSer.subscription_id}>
-        {subSer.service_name} - {subSer.subscription_name} {subSer.price}kr
+        {subSer.service_name} - {subSer.subscription_name}{" "}
+        {subSer.subscription_price}kr
       </option>
     )) ?? [];
   return isVisible ? (

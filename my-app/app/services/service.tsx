@@ -18,7 +18,7 @@ const Services = ({ data }: ServicesProps) => {
   const [lightMode, setLightMode] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const combineSubscriptionServices = (
+  const userSubscriptionsAndServices = (
     subscriptions: subscriptions,
     services: services,
     subscriptions_users: subscriptions_users
@@ -47,10 +47,38 @@ const Services = ({ data }: ServicesProps) => {
     return result;
   };
 
-  const SubscriptionsAndServices = combineSubscriptionServices(
+  const combineServicesAndSubscriptions = (
+    subscriptions: subscriptions,
+    services: services
+  ) => {
+    const res = [];
+    for (const subscription of subscriptions) {
+      const service = services?.find(
+        (service) => service.id === subscription.service_id
+      );
+
+      if (service) {
+        res.push({
+          service_name: service.name,
+          subscription_name: subscription.name,
+          subscription_price: subscription.price,
+          subscription_id: subscription.id,
+        });
+      }
+    }
+
+    return res;
+  };
+
+  const SubscriptionsAndServices = userSubscriptionsAndServices(
     data.subscriptions,
     data.services,
     data.subscriptions_users
+  );
+
+  const subser = combineServicesAndSubscriptions(
+    data.subscriptions,
+    data.services
   );
 
   const totalPriceMonthly: number | undefined =
@@ -65,10 +93,7 @@ const Services = ({ data }: ServicesProps) => {
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
         <TotalPrice totalPriceMonthly={totalPriceMonthly} />
-        <ServiceForm
-          SubscriptionsAndServices={SubscriptionsAndServices}
-          isVisible={isVisible}
-        />
+        <ServiceForm SubscriptionsAndServices={subser} isVisible={isVisible} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />
       </div>
     </div>
