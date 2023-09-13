@@ -5,6 +5,7 @@ import LightSwitch from "@/components/LightSwitch";
 import { useState } from "react";
 import TotalPrice from "@/components/TotalPrice";
 import Plus from "@/components/Plus";
+import ServiceList from "@/components/ServiceList";
 
 type ServicesProps = {
   data: {
@@ -37,7 +38,7 @@ const Services = ({ data }: ServicesProps) => {
           result.push({
             service_name: service.name,
             subscription_name: subscription.name,
-            subscription_id: subscription.id,
+            subscription_id: userSubscription.id,
             price: subscription.price,
           });
         }
@@ -83,7 +84,6 @@ const Services = ({ data }: ServicesProps) => {
 
   const totalPriceMonthly: number | undefined =
     SubscriptionsAndServices?.reduce((accumulator, total) => {
-      console.log("Total Price:", total?.price);
       return accumulator + total?.price;
     }, 0);
 
@@ -94,6 +94,7 @@ const Services = ({ data }: ServicesProps) => {
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
         <TotalPrice totalPriceMonthly={totalPriceMonthly} />
         <ServiceForm SubscriptionsAndServices={subser} isVisible={isVisible} />
+        <ServiceList SubscriptionsAndServices={SubscriptionsAndServices} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />
       </div>
     </div>

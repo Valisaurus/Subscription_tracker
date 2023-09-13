@@ -10,10 +10,11 @@ type ServiceListProps = {
 const ServiceList = ({ SubscriptionsAndServices }: ServiceListProps) => {
   const mappedSubscriptions =
     SubscriptionsAndServices?.map((subSer) => (
-      <div>
+      <form action="/services/toggleService" method="post">
+        <input type="hidden" name="id" value={subSer.subscription_id} />
         {subSer.service_name} - {subSer.subscription_name} {subSer.price}kr
-        <div>X</div>
-      </div>
+        <button type="submit">X</button>
+      </form>
     )) ?? [];
 
   return (

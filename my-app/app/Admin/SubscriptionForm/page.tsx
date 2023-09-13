@@ -38,7 +38,6 @@ export default async function AdminForm() {
 
   const totalPrice: number | undefined = subscriptions?.reduce(
     (accumulator, service) => {
-      //console.log("Total Price:", service.price);
       return accumulator + service.price;
     },
     0
