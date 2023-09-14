@@ -8,7 +8,15 @@ import LogoutButton from "@/components/LogoutButton";
 import Logo from "@/components/Logo";
 import { useState } from "react";
 
-const ClientSideSettings = () => {
+type ClientSideSettingsProps = {
+  user_id: string | undefined;
+  user_email: string | undefined;
+};
+
+const ClientSideSettings = ({
+  user_id,
+  user_email,
+}: ClientSideSettingsProps) => {
   const [lightMode, setLightMode] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<string>("");
   return (
@@ -42,7 +50,12 @@ const ClientSideSettings = () => {
         </div>
       </div>
       <ChangePassword isVisible={isVisible} setIsVisible={setIsVisible} />
-      <DeleteAccount isVisible={isVisible} setIsVisible={setIsVisible} />
+      <DeleteAccount
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+        user_id={user_id}
+        user_email={user_email}
+      />
     </div>
   );
 };

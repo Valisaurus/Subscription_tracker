@@ -7,6 +7,9 @@ const ServerSideSettings = async () => {
   const supabase = createServerComponentClient({
     cookies,
   });
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const {
     data: { session },
@@ -15,7 +18,7 @@ const ServerSideSettings = async () => {
   if (!session) {
     redirect("/login");
   }
-  return <ClientSideSettings />;
+  return <ClientSideSettings user_id={user?.id} user_email={user?.email} />;
 };
 
 export default ServerSideSettings;

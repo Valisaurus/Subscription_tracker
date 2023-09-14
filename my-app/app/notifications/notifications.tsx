@@ -10,7 +10,7 @@ const ClientSideNotifications = () => {
       <div className="text-black dark:text-white h-screen w-screen bg-white dark:bg-black">
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
-        <form action="/notifications/registerNumber">
+        <form action="/notifications/registerNumber" method="post">
           <label htmlFor="phone-number" className="italic">
             If you want notifications to your mobile phone through text
             messages, please fill in your mobile phone number below

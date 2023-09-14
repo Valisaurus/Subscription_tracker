@@ -7,15 +7,24 @@ export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url);
   const formData = await request.formData();
-  const Phone = Number(formData.get("phone-number"));
+  const Phone = String(formData.get("phone-number"));
 
   const supabase = createServerActionClient({ cookies });
 
-  const { error } = await supabase.auth.update();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (error) {
+  const res = await supabase.from("phone_numbers").insert({
+    user_id: user?.id,
+    phone: Phone,
+  });
+
+  console.log("this is res", res);
+
+  if (res.error) {
     return NextResponse.redirect(
-      `${requestUrl.origin}/login?error=Could not authenticate user`,
+      `${requestUrl.origin}/notifications?error=Could not authenticate user`,
       {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
