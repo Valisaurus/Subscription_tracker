@@ -6,6 +6,7 @@ import { useState } from "react";
 import TotalPrice from "@/components/TotalPrice";
 import Plus from "@/components/Plus";
 import ServiceList from "@/components/ServiceList";
+import SettingsButton from "@/components/SettingsButton";
 
 type ServicesProps = {
   data: {
@@ -30,7 +31,7 @@ const Services = ({ data }: ServicesProps) => {
       const subscription = subscriptions?.find(
         (sub) => sub.id === userSubscription.subscription_id
       );
-      if (subscription) {
+      if (subscription && userSubscription.active) {
         const service = services?.find(
           (serv) => serv.id === subscription.service_id
         );
@@ -96,6 +97,7 @@ const Services = ({ data }: ServicesProps) => {
         <ServiceForm SubscriptionsAndServices={subser} isVisible={isVisible} />
         <ServiceList SubscriptionsAndServices={SubscriptionsAndServices} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />
+        <SettingsButton />
       </div>
     </div>
   );

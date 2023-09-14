@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     });
   }
 
-  return NextResponse.redirect(`${requestUrl.origin}/Verification`, {
+  return NextResponse.redirect(`${requestUrl.origin}/verification`, {
     status: 301,
   });
 }

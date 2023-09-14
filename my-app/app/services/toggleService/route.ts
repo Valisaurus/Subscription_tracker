@@ -10,13 +10,14 @@ export async function POST(request: Request) {
   console.log(id);
   const supabase = createServerActionClient({ cookies });
 
-  const { data, error } = await supabase
-    .from("subscriptions")
-    .update({ name: "TEST" })
-    .eq("id", 1);
+  const res = await supabase
+    .from("subscriptions_users")
+    .update({ active: false })
+    .eq("id", id);
 
-  console.log(data);
-  if (error) {
+  console.log(res);
+
+  if (res.error) {
     return NextResponse.redirect(
       `${requestUrl.origin}?/error=Could not toggle service`,
       {
