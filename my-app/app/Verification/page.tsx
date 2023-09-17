@@ -9,25 +9,24 @@ const VerificationPage = () => {
   const [lightMode, setLightMode] = useState(false);
   return (
     <div className={`${lightMode ? "dark" : ""}`}>
-      <div className="flex-1 flex flex-col w-full justify-center gap-2 bg-white dark:bg-black">
+      <div className="flex flex-col items-center bg-white dark:bg-black w-screen h-screen">
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
-        <div className="flex flex-col justify-around items-center h-screen py-24">
-          <div className="flex flex-col justify-around items-center">
-            <div>
-              <h2 className="text-6xl text-center text-black dark:text-white">
-                CTRL+
-              </h2>
-              <h3>This is the verification page</h3>
-              <div>
-                <h2>Confirm your signup</h2>
-
-                <p>Follow this link to confirm your user:</p>
-                <p>
-                  <a href="{{ .ConfirmationURL }}">Confirm your mail</a>
-                </p>
-              </div>
-            </div>
+        <div className="flex flex-col justify-around items-center w-[332px]">
+          <div className="mt-[200px]">
+            <h2 className="text-6xl text-center text-black dark:text-white">
+              CTRL+
+            </h2>
+            <i className="text-[20px] text-center text-black dark:text-white text-[20px]">
+              Take ctrl of your streaming subscriptions
+            </i>
+          </div>
+          <div className="flex flex-col justify-center mt-[110px] h-[144px] text-[20px]">
+            <i className="mb-[30px]">You've got mail!</i>
+            <i>
+              To start using the service please press the link in the email to
+              verify your account.
+            </i>
           </div>
         </div>
       </div>
