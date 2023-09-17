@@ -18,7 +18,7 @@ const ServiceForm = ({
 }: ServiceFormProps) => {
   const mappedServices =
     SubscriptionsAndServices?.map((subSer) => (
-      <option key={subSer.service_name} value={subSer.subscription_id}>
+      <option key={subSer.subscription_id} value={subSer.subscription_id}>
         {subSer.service_name} - {subSer.subscription_name}{" "}
         {subSer.subscription_price}kr
       </option>
