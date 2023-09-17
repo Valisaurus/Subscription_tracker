@@ -25,26 +25,25 @@ const ServiceForm = ({
     )) ?? [];
   return isVisible ? (
     <form action="services/addService" method="post">
-      <div className="flex-1 flex flex-col w-screen justify-center items-center gap-2 text-foreground px-4 text-black dark:text-white">
+      <div className="flex-1 flex flex-col w-screen justify-center items-center text-foreground px-4 text-black dark:text-white text-[20px]">
         <div className="flex flex-col justify-center items-center">
-          <div className="mb-6">
+          <div>
             <select
-              className="px-4 py-2 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-6"
+              className="px-4 border-4 w-full h-[45px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[10px] "
               name="subscription_id"
               required
             >
+              <option value="0">Choose service</option>
               {mappedServices}
             </select>
             <input
-              className="px-4 py-2 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-6"
+              className="px-4 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[10px] h-[45px]"
               type="date"
               name="start_date"
             />
           </div>
-          <button
-            className={`bg-green-700 px-4 py-2 mb-2 w-[250px] text-white`}
-          >
-            Confirm
+          <button className="px-4 mb-2 border-4 w-full border-black dark:border-white text-black dark:text-white h-[45px]">
+            Add to the list
           </button>
           <Messages />
         </div>

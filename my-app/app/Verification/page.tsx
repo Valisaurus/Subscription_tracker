@@ -17,7 +17,7 @@ const VerificationPage = () => {
             <h2 className="text-6xl text-center text-black dark:text-white">
               CTRL+
             </h2>
-            <i className="text-[20px] text-center text-black dark:text-white text-[20px]">
+            <i className="text-[20px] text-center text-black dark:text-white]">
               Take ctrl of your streaming subscriptions
             </i>
           </div>
