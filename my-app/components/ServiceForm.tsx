@@ -33,7 +33,9 @@ const ServiceForm = ({
               name="subscription_id"
               required
             >
-              <option value="0">Choose service</option>
+              <option value="0" key={0}>
+                Choose service
+              </option>
               {mappedServices}
             </select>
             <input
