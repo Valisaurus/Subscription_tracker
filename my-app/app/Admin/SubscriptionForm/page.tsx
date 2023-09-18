@@ -1,10 +1,11 @@
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-export default function AdminForm() {
+export default async function AdminForm() {
+  const supabase = createServerActionClient({ cookies });
   const handleForm = async (formData: FormData) => {
     "use server";
-    const supabase = createServerActionClient({ cookies });
+
     const name = String(formData.get("name"));
     const price = Number(formData.get("price"));
     const trial_length_days = Number(formData.get("trial_length_days"));
@@ -20,6 +21,27 @@ export default function AdminForm() {
     }
   };
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const fetchSubscriptions = await supabase
+    .from("subscriptions")
+    .select("name, price");
+
+  const subscriptions = fetchSubscriptions.data;
+
+  const services: { name: string; price: number }[] | undefined =
+    subscriptions?.map((service: { name: string; price: number }) => {
+      return { name: service?.name, price: service?.price };
+    });
+
+  const totalPrice: number | undefined = subscriptions?.reduce(
+    (accumulator, service) => {
+      return accumulator + service.price;
+    },
+    0
+  );
   return (
     <div>
       <form action={handleForm} method="POST">
