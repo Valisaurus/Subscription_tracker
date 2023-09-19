@@ -5,6 +5,68 @@ import { useState } from "react";
 
 const ClientSideNotifications = () => {
   const [lightMode, setLightMode] = useState<boolean>(false);
+
+  const notificationsSupported = () => {
+    if (
+      window?.Notification &&
+      navigator?.serviceWorker &&
+      window?.PushManager
+    ) {
+      return true;
+    }
+    return false;
+  };
+  const saveSubscription = async (subscription: PushSubscription) => {
+    const ORIGIN = window.location.origin;
+    const BACKEND_URL = `${ORIGIN}/api/push`;
+
+    const response = await fetch(BACKEND_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(subscription),
+    });
+    return response.json();
+  };
+
+  const unregisterServiceWorkers = async () => {
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations.map((r) => r.unregister()));
+  };
+
+  const registerServiceWorker = async () => {
+    return window?.navigator.serviceWorker.register("../service");
+  };
+
+  const NotificationComp = () => {
+    if (!notificationsSupported()) {
+      return <div>Install the PWA first</div>;
+    }
+    return <div>WebPush PWA</div>;
+  };
+
+  const subscribe = async () => {
+    await unregisterServiceWorkers();
+
+    const swRegistration = await registerServiceWorker();
+    await Notification.requestPermission();
+
+    try {
+      const options = {
+        applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+        userVisibleOnly: true,
+      };
+      const subscription = await swRegistration.pushManager.subscribe(options);
+
+      await saveSubscription(subscription);
+
+      console.log({ subscription });
+    } catch (err) {
+      console.error("Error", err);
+    }
+  };
+
   return (
     <div className={`${lightMode ? "dark" : ""}`}>
       <div className="text-black dark:text-white h-screen w-screen bg-white dark:bg-black">
@@ -20,6 +82,13 @@ const ClientSideNotifications = () => {
             Save
           </button>
         </form>
+        <div className="flex flex-col justify-center items-center w-screen mt-[10rem]">
+          <div className="flex flex-col w-[50rem] h-[50rem]">
+            {NotificationComp()}
+            <button onClick={subscribe}>Register service worker</button>
+            <button onClick={unregisterServiceWorkers}>Unregister all</button>
+          </div>
+        </div>
       </div>
     </div>
   );
