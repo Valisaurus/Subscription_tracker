@@ -26,49 +26,49 @@ const Services = ({ data }: ServicesProps) => {
     subscriptions_users: subscriptions_users
   ) => {
     const result = [];
-
-    for (const userSubscription of subscriptions_users) {
-      const subscription = subscriptions?.find(
-        (sub) => sub.id === userSubscription.subscription_id
-      );
-      if (subscription && userSubscription.active) {
-        const service = services?.find(
-          (serv) => serv.id === subscription.service_id
+    if (subscriptions_users !== null) {
+      for (const userSubscription of subscriptions_users) {
+        const subscription = subscriptions?.find(
+          (sub) => sub.id === userSubscription.subscription_id
         );
-        if (service) {
-          result.push({
-            service_name: service.name,
-            subscription_name: subscription.name,
-            subscription_id: userSubscription.id,
-            price: subscription.price,
-          });
+        if (subscription && userSubscription.active) {
+          const service = services?.find(
+            (serv) => serv.id === subscription.service_id
+          );
+          if (service) {
+            result.push({
+              service_name: service.name,
+              subscription_name: subscription.name,
+              subscription_id: userSubscription.id,
+              price: subscription.price,
+            });
+          }
         }
       }
     }
-
     return result;
   };
-
   const combineServicesAndSubscriptions = (
     subscriptions: subscriptions,
     services: services
   ) => {
     const res = [];
-    for (const subscription of subscriptions) {
-      const service = services?.find(
-        (service) => service.id === subscription.service_id
-      );
+    if (subscriptions !== null) {
+      for (const subscription of subscriptions) {
+        const service = services?.find(
+          (service) => service.id === subscription.service_id
+        );
 
-      if (service) {
-        res.push({
-          service_name: service.name,
-          subscription_name: subscription.name,
-          subscription_price: subscription.price,
-          subscription_id: subscription.id,
-        });
+        if (service) {
+          res.push({
+            service_name: service.name,
+            subscription_name: subscription.name,
+            subscription_price: subscription.price,
+            subscription_id: subscription.id,
+          });
+        }
       }
     }
-
     return res;
   };
 
@@ -85,7 +85,10 @@ const Services = ({ data }: ServicesProps) => {
 
   const totalPriceMonthly: number | undefined =
     SubscriptionsAndServices?.reduce((accumulator, total) => {
-      return accumulator + total?.price;
+      if (total?.price !== null) {
+        return accumulator + total?.price;
+      }
+      return accumulator;
     }, 0);
 
   return (

@@ -7,8 +7,8 @@ import {
 
 webpush.setVapidDetails(
   "mailto:test@example.com",
-  process.env.NEXT_PUBLIC_VAPID_PRIVATE_KEY,
-  process.env.NEXT_PUBLIC_VAPID_PRIVATE_KEY
+  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || "",
+  process.env.NEXT_PUBLIC_VAPID_PRIVATE_KEY || ""
 );
 
 export async function POST(request: NextRequest) {
