@@ -36,7 +36,7 @@ const ClientSideNotifications = () => {
   };
 
   const registerServiceWorker = async () => {
-    return window?.navigator.serviceWorker.register("../service");
+    return window?.navigator.serviceWorker.register("../service.js");
   };
 
   const NotificationComp = () => {

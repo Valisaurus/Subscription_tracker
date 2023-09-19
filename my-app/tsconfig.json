@@ -28,7 +28,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/service-worker.js"
-, "app/service-worker/page.js"  ],
+    "app/service-worker.js",
+    "app/service-worker/page.js",
+    "app/service.js"
+  ],
   "exclude": ["node_modules"]
 }
