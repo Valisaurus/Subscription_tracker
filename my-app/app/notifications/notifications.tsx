@@ -6,11 +6,16 @@ import { useState } from "react";
 const ClientSideNotifications = () => {
   const [lightMode, setLightMode] = useState<boolean>(false);
 
-  const notificationsSupported = () =>
-    "Notification" in window &&
-    "serviceWorker" in navigator &&
-    "PushManager" in window;
-
+  const notificationsSupported = () => {
+    if (
+      window?.Notification &&
+      navigator?.serviceWorker &&
+      window?.PushManager
+    ) {
+      return true;
+    }
+    return false;
+  };
   const saveSubscription = async (subscription: PushSubscription) => {
     const ORIGIN = window.location.origin;
     const BACKEND_URL = `${ORIGIN}/api/push`;
@@ -31,7 +36,7 @@ const ClientSideNotifications = () => {
   };
 
   const registerServiceWorker = async () => {
-    return navigator.serviceWorker.register("/service.js");
+    return window?.navigator.serviceWorker.register("../service");
   };
 
   const NotificationComp = () => {
@@ -45,7 +50,7 @@ const ClientSideNotifications = () => {
     await unregisterServiceWorkers();
 
     const swRegistration = await registerServiceWorker();
-    await window?.Notification.requestPermission();
+    await Notification.requestPermission();
 
     try {
       const options = {
