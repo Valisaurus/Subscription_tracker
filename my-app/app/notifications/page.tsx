@@ -3,7 +3,6 @@ import ClientSideNotifications from "./notifications";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import SaveButton from "@/components/SaveButton";
 const ServerSideNotifications = async () => {
   const supabase = createServerComponentClient({
     cookies,
