@@ -36,7 +36,7 @@ const ClientSideNotifications = () => {
   };
 
   const registerServiceWorker = async () => {
-    return window?.navigator.serviceWorker.register("../service.js");
+    return navigator.serviceWorker.register("/service.js");
   };
 
   const NotificationComp = () => {
@@ -85,7 +85,13 @@ const ClientSideNotifications = () => {
         <div className="flex flex-col justify-center items-center w-screen mt-[10rem]">
           <div className="flex flex-col w-[50rem] h-[50rem]">
             {NotificationComp()}
-            <button onClick={subscribe}>Register service worker</button>
+            <button
+              onClick={() => {
+                subscribe();
+              }}
+            >
+              Register service worker
+            </button>
             <button onClick={unregisterServiceWorkers}>Unregister all</button>
           </div>
         </div>

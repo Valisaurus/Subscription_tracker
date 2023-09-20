@@ -2,7 +2,7 @@
 import ServiceForm from "@/components/ServiceForm";
 import Logo from "@/components/Logo";
 import LightSwitch from "@/components/LightSwitch";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TotalPrice from "@/components/TotalPrice";
 import Plus from "@/components/Plus";
 import ServiceList from "@/components/ServiceList";
