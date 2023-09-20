@@ -2,7 +2,7 @@
 import LightSwitch from "@/components/LightSwitch";
 import Logo from "@/components/Logo";
 import { useState } from "react";
-
+export const dynamic = "force-dynamic";
 const ClientSideNotifications = () => {
   const [lightMode, setLightMode] = useState<boolean>(false);
 

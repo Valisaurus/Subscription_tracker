@@ -1,15 +1,19 @@
 import { NextResponse, NextRequest } from "next/server";
-import webpush, { PushSubscription } from "web-push";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import webpush from "web-push";
+import { createClient } from "@supabase/supabase-js";
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-
+export const dynamic = "force-dynamic";
 export async function GET(_: NextRequest) {
-  const supabase = createServerActionClient({ cookies });
+  // const supabase = createClient(
+  //   process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+  //   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+  // );
+
+  const supabase = createRouteHandlerClient({ cookies });
   const { data, error } = await supabase
     .from("web_push_notifications")
     .select("endpoint, auth_key, p256dh_key");
-
-  const subscriptions = await data;
 
   webpush.setVapidDetails(
     process.env.NEXT_PUBLIC_VAPID_SUBJECT || "",
@@ -17,7 +21,6 @@ export async function GET(_: NextRequest) {
     process.env.NEXT_PUBLIC_VAPID_PRIVATE_KEY || ""
   );
 
-  console.log(data);
   data?.forEach((dataRow) => {
     const payload = JSON.stringify({
       title: "WebPush Notification!",
@@ -31,6 +34,6 @@ export async function GET(_: NextRequest) {
   });
 
   return NextResponse.json({
-    message: `${subscriptions?.length} messages sent!`,
+    message: `${data?.length} messages sent!`,
   });
 }
