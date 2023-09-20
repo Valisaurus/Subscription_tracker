@@ -3,6 +3,7 @@ import webpush from "web-push";
 import { createClient } from "@supabase/supabase-js";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 export const dynamic = "force-dynamic";
 export async function GET(_: NextRequest) {
   // const supabase = createClient(
@@ -33,7 +34,5 @@ export async function GET(_: NextRequest) {
     webpush.sendNotification(subscription, payload);
   });
 
-  return NextResponse.json({
-    message: `${data?.length} messages sent!`,
-  });
+  return redirect("/notifications");
 }
