@@ -2,9 +2,9 @@ import { NextResponse, NextRequest } from "next/server";
 import webpush from "web-push";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-export const dynamic = "force-dynamic";
+
 export async function GET(_: NextRequest) {
-  const requestUrl = new URL(_.url);
+  console.log("REACHED");
   const supabase = createRouteHandlerClient({ cookies });
   const { data, error } = await supabase
     .from("web_push_notifications")
@@ -28,18 +28,5 @@ export async function GET(_: NextRequest) {
     webpush.sendNotification(subscription, payload);
   });
 
-  if (error) {
-    return NextResponse.redirect(
-      `${requestUrl.origin}/login?error=Could not authenticate user`,
-      {
-        // a 301 status is required to redirect from a POST to a GET route
-        status: 301,
-      }
-    );
-  }
-
-  return NextResponse.redirect(`${requestUrl.origin}/notifications`, {
-    // a 301 status is required to redirect from a POST to a GET route
-    status: 301,
-  });
+  return NextResponse.json({ message: "This is the sendNotifications route" });
 }
