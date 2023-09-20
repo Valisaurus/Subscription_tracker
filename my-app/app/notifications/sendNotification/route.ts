@@ -28,5 +28,7 @@ export async function GET(_: NextRequest) {
     webpush.sendNotification(subscription, payload);
   });
 
-  return NextResponse.json({ message: "This is the sendNotifications route" });
+  return NextResponse.json({
+    message: "This is the sendNotifications route HEJ",
+  });
 }
