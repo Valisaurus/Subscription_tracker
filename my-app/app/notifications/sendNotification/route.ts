@@ -24,7 +24,7 @@ export async function GET(_: NextRequest) {
   data?.forEach((dataRow) => {
     const payload = JSON.stringify({
       title: "WebPush Notification!",
-      body: `Hey! `,
+      body: `Hey there! `,
     });
     const subscription = {
       endpoint: dataRow.endpoint,
