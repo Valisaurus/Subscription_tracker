@@ -1,16 +1,10 @@
 import { NextResponse, NextRequest } from "next/server";
 import webpush from "web-push";
-import { createClient } from "@supabase/supabase-js";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 export const dynamic = "force-dynamic";
 export async function GET(_: NextRequest) {
-  // const supabase = createClient(
-  //   process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-  //   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
-  // );
-
+  const requestUrl = new URL(_.url);
   const supabase = createRouteHandlerClient({ cookies });
   const { data, error } = await supabase
     .from("web_push_notifications")
@@ -34,5 +28,18 @@ export async function GET(_: NextRequest) {
     webpush.sendNotification(subscription, payload);
   });
 
-  return redirect("/notifications");
+  if (error) {
+    return NextResponse.redirect(
+      `${requestUrl.origin}/login?error=Could not authenticate user`,
+      {
+        // a 301 status is required to redirect from a POST to a GET route
+        status: 301,
+      }
+    );
+  }
+
+  return NextResponse.redirect(`${requestUrl.origin}/notifications`, {
+    // a 301 status is required to redirect from a POST to a GET route
+    status: 301,
+  });
 }
