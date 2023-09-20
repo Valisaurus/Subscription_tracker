@@ -93,6 +93,9 @@ const ClientSideNotifications = () => {
               Register service worker
             </button>
             <button onClick={unregisterServiceWorkers}>Unregister all</button>
+            <form action="/notifications/sendNotification" method="GET">
+              <button>Recieve notification</button>
+            </form>
           </div>
         </div>
       </div>
