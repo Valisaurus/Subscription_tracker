@@ -6,10 +6,11 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url);
-  const endpoint = await request.json();
-  console.log("THIS IS THE ENDPOINT: ", endpoint);
-  //const public_vapid_key = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
-  //const private_vapid_key = process.env.NEXT_PUBLIC_VAPID_PRIVATE_KEY;
+  const req = await request.json();
+  const endpoint = req?.endpoint;
+  const auth_key = req?.keys?.auth;
+  const p256dh_key = req?.keys?.p256dh;
+  console.log("THIS IS REQ DATA: ", req);
   const supabase = createServerActionClient({ cookies });
 
   const {
@@ -19,8 +20,8 @@ export async function POST(request: Request) {
   const res = await supabase.from("web_push_notifications").insert({
     user_id: user?.id,
     endpoint,
-    //public_vapid_key,
-    //private_vapid_key,
+    auth_key,
+    p256dh_key,
   });
 
   console.log("this is res", res);
