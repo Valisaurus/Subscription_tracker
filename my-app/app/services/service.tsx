@@ -31,7 +31,7 @@ const Services = ({ data }: ServicesProps) => {
         const subscription = subscriptions?.find(
           (sub) => sub.id === userSubscription.subscription_id
         );
-        if (subscription && userSubscription.active) {
+        if (subscription && userSubscription) {
           const service = services?.find(
             (serv) => serv.id === subscription.service_id
           );

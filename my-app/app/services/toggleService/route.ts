@@ -10,10 +10,7 @@ export async function POST(request: Request) {
   console.log(id);
   const supabase = createServerActionClient({ cookies });
 
-  const res = await supabase
-    .from("subscriptions_users")
-    .update({ active: false })
-    .eq("id", id);
+  const res = await supabase.from("subscriptions_users").delete().eq("id", id);
 
   console.log(res);
 
