@@ -41,7 +41,7 @@ const ServiceForm = ({
             <input
               className="px-4 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[10px] h-[45px]"
               type="date"
-              name="start_date"
+              name="trial_end_date"
             />
           </div>
           <button className="px-4 mb-2 border-4 w-full border-black dark:border-white text-black dark:text-white h-[45px]">

@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url);
   const formData = await request.formData();
-  const start_date = formData.get("start_date");
+  let trial_end_date = formData.get("trial_end_date");
   const subscription_id = formData.get("subscription_id");
   const supabase = createServerActionClient({ cookies });
 
@@ -16,9 +16,13 @@ export async function POST(request: Request) {
 
   const user_id = user?.id;
 
+  if (trial_end_date === "") {
+    trial_end_date = null;
+  }
+
   const { error } = await supabase
     .from("subscriptions_users")
-    .insert({ user_id, subscription_id, start_date });
+    .insert({ user_id, subscription_id, trial_end_date });
 
   console.log(error);
   if (error) {
