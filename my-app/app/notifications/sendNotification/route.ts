@@ -2,10 +2,12 @@ import { NextResponse, NextRequest } from "next/server";
 import webpush from "web-push";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-
+const cron = require("node-cron");
 export const dynamic = "force-dynamic";
+
 export async function GET(_: NextRequest) {
   console.log("REACHED");
+
   const supabase = createRouteHandlerClient({ cookies });
   const { data, error } = await supabase
     .from("web_push_notifications")
