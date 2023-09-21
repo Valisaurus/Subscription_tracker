@@ -8,6 +8,9 @@ declare global {
   type subscriptions_users = Array<
     Database["public"]["Tables"]["subscriptions_users"]["Row"]
   > | null;
+  type web_push_notifications = Array<
+    Database["public"]["Tables"]["web_push_notifications"]["Row"]
+  > | null;
 
   type service = Database["public"]["Tables"]["services"]["Row"] | null;
   type subscription =
@@ -15,5 +18,8 @@ declare global {
     | null;
   type subscription_user =
     | Database["public"]["Tables"]["subscriptions_users"]["Row"]
+    | null;
+  type web_push_notification =
+    | Database["public"]["Tables"]["web_push_notifications"]["Row"]
     | null;
 }
