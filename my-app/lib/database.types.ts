@@ -9,6 +9,31 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      phone_numbers: {
+        Row: {
+          id: number
+          phone: string | null
+          user_id: string | null
+        }
+        Insert: {
+          id?: number
+          phone?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          id?: number
+          phone?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "phone_numbers_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       services: {
         Row: {
           id: number
@@ -60,27 +85,21 @@ export interface Database {
       }
       subscriptions_users: {
         Row: {
-          active: boolean
-          had_trial: boolean
           id: number
-          start_date: string | null
           subscription_id: number | null
+          trial_end_date: string | null
           user_id: string | null
         }
         Insert: {
-          active?: boolean
-          had_trial?: boolean
           id?: number
-          start_date?: string | null
           subscription_id?: number | null
+          trial_end_date?: string | null
           user_id?: string | null
         }
         Update: {
-          active?: boolean
-          had_trial?: boolean
           id?: number
-          start_date?: string | null
           subscription_id?: number | null
+          trial_end_date?: string | null
           user_id?: string | null
         }
         Relationships: [
@@ -92,6 +111,37 @@ export interface Database {
           },
           {
             foreignKeyName: "subscriptions_users_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      web_push_notifications: {
+        Row: {
+          auth_key: string | null
+          endpoint: string | null
+          id: number
+          p256dh_key: string | null
+          user_id: string | null
+        }
+        Insert: {
+          auth_key?: string | null
+          endpoint?: string | null
+          id?: number
+          p256dh_key?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          auth_key?: string | null
+          endpoint?: string | null
+          id?: number
+          p256dh_key?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "web_push_notifications_user_id_fkey"
             columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
