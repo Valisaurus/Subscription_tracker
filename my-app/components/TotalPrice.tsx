@@ -1,5 +1,3 @@
-import Slash from "../app/svgs/Slash.svg";
-import Image from "next/image";
 type TotalPriceProps = {
   totalPriceMonthly: number;
 };
@@ -12,7 +10,7 @@ const TotalPrice = ({ totalPriceMonthly }: TotalPriceProps) => {
         <br />
         /month{" "}
       </p>
-      <Image src={Slash} alt="slash" />
+
       <p>
         {totalPriceMonthly * 12} kr
         <br />
