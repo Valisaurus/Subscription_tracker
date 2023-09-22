@@ -1,12 +1,23 @@
+import Slash from "../app/svgs/Slash.svg";
+import Image from "next/image";
 type TotalPriceProps = {
   totalPriceMonthly: number;
 };
 
 const TotalPrice = ({ totalPriceMonthly }: TotalPriceProps) => {
   return totalPriceMonthly ? (
-    <div className="text-black dark:text-white">
-      <p>Your monthly price is: {totalPriceMonthly}</p>
-      <p>Your yearly price is: {totalPriceMonthly * 12}</p>
+    <div className="flex mw-full m-[1rem] items-center justify-between text-black dark:text-white text-[40px]">
+      <p>
+        {totalPriceMonthly} kr
+        <br />
+        /month{" "}
+      </p>
+      <Image src={Slash} alt="slash" />
+      <p>
+        {totalPriceMonthly * 12} kr
+        <br />
+        /year
+      </p>
     </div>
   ) : (
     <div className="text-white dark:text-black">
