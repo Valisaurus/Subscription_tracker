@@ -16,7 +16,7 @@ const TotalPrice = ({ totalPriceMonthly }: TotalPriceProps) => {
       <p>
         {totalPriceMonthly * 12} kr
         <br />
-        /year HEJ
+        /year
       </p>
     </div>
   ) : (
