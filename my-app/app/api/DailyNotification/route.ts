@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import webpush from "web-push";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-import { createClient } from "@supabase/supabase-js";
+
 import { cookies } from "next/headers";
 import cron from "node-cron";
 
@@ -28,17 +28,7 @@ const calcDayDiff = (trial_end_date: string | null): number => {
 };
 
 export async function GET(_: NextRequest) {
-  //const supabase = createRouteHandlerClient({ cookies });
-  const supabase = createClient(
-    String(process.env.NEXT_PUBLIC_SUPABASE_URL),
-    String(process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE),
-    {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    }
-  );
+  const supabase = createRouteHandlerClient({ cookies });
 
   const fetchPushData: { data: web_push_notifications } = await supabase
     .from("web_push_notifications")
