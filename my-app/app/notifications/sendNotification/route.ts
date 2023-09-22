@@ -4,11 +4,23 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 const cron = require("node-cron");
 export const dynamic = "force-dynamic";
+import { createClient } from "@supabase/supabase-js";
 
 export async function GET(_: NextRequest) {
   console.log("REACHED");
 
-  const supabase = createRouteHandlerClient({ cookies });
+  const supabase = createClient(
+    String(process.env.NEXT_PUBLIC_SUPABASE_URL),
+    String(process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE),
+    {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    }
+  );
+
+  // const supabase = createRouteHandlerClient({ cookies });
   const { data, error } = await supabase
     .from("web_push_notifications")
     .select("endpoint, auth_key, p256dh_key");
