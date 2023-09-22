@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from "next/server";
+//import { NextResponse, NextRequest } from "next/server";
 import webpush from "web-push";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
@@ -26,7 +26,7 @@ const calcDayDiff = (trial_end_date: string | null): number => {
   return 0;
 };
 
-export async function GET(_: NextRequest) {
+export async function GET() {
   const supabase = createRouteHandlerClient({ cookies });
 
   const fetchPushData: { data: web_push_notifications } = await supabase
@@ -92,5 +92,5 @@ export async function GET(_: NextRequest) {
     console.log("Notifications sent");
   });
 
-  return NextResponse.json({ message: "hello" });
+  //return NextResponse.json({ message: "hello" });
 }

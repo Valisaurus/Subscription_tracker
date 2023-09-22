@@ -1,4 +1,4 @@
-//import { NextResponse, NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import webpush from "web-push";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
@@ -6,7 +6,7 @@ const cron = require("node-cron");
 export const dynamic = "force-dynamic";
 import { createClient } from "@supabase/supabase-js";
 
-export async function GET() {
+export async function GET(_: NextRequest) {
   console.log("REACHED");
 
   const supabase = createClient(
@@ -43,7 +43,7 @@ export async function GET() {
     webpush.sendNotification(subscription, payload);
   });
 
-  // return NextResponse.json({
-  //   message: "This is the sendNotifications route HEJ",
-  // });
+  return NextResponse.json({
+    message: "This is the sendNotifications route HEJ",
+  });
 }
