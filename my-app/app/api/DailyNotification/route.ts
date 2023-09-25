@@ -59,22 +59,26 @@ export async function GET(_: NextRequest) {
   );
 
   const createPayload = (user: subscription_user) => {
-    const payload = JSON.stringify({
-      title: "Trial period running out!",
-      body: `Hey there! Your trial for ${
-        servicesData?.find(
-          (service) =>
-            service.id ===
-            subscriptionsData?.find(
-              (subscriptions) => subscriptions.id === user.subscription_id
-            )?.service_id
-        )?.name
-      } - ${
-        subscriptionsData?.find((obj) => obj.id === user.subscription_id)?.name
-      } is about to expire in 2 days!`,
-    });
+    if (user !== null) {
+      const payload = JSON.stringify({
+        title: "Trial period running out!",
+        body: `Hey there! Your trial for ${
+          servicesData?.find(
+            (service) =>
+              service.id ===
+              subscriptionsData?.find(
+                (subscriptions) => subscriptions.id === user?.subscription_id
+              )?.service_id
+          )?.name
+        } - ${
+          subscriptionsData?.find((obj) => obj.id === user?.subscription_id)
+            ?.name
+        } is about to expire in 2 days!`,
+      });
+      return payload;
+    }
 
-    return payload;
+    return "";
   };
 
   const createWebSubscription = (userPushData: web_push_notification) => {
@@ -91,7 +95,7 @@ export async function GET(_: NextRequest) {
   const executeWebPush = (userSubscription: subscription_user) => {
     let numberOfDevices = 0;
     pushData?.forEach((userPushData) => {
-      if (userPushData.user_id === userSubscription.user_id) {
+      if (userPushData.user_id === userSubscription?.user_id) {
         webpush.sendNotification(
           createWebSubscription(userPushData),
           createPayload(userSubscription)
@@ -104,11 +108,11 @@ export async function GET(_: NextRequest) {
     );
   };
 
-  subscriptionUsers?.forEach((userSubscription) => {
-    console.log("FOUND USER SUBSCRIPTION ON: ", userSubscription.user_id);
-    if (calcDayDiff(String(userSubscription.trial_end_date)) === 2) {
+  subscriptionUsers?.forEach((userSubscription: subscription_user) => {
+    console.log("FOUND USER SUBSCRIPTION ON: ", userSubscription?.user_id);
+    if (calcDayDiff(String(userSubscription?.trial_end_date)) === 2) {
       console.log(
-        `USER ${userSubscription.user_id} HAS SUBSCRIPTION WITH 2 DAYS UNTIL EXPIRATION`
+        `USER ${userSubscription?.user_id} HAS SUBSCRIPTION WITH 2 DAYS UNTIL EXPIRATION`
       );
       executeWebPush(userSubscription);
     }
