@@ -1,9 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 import webpush from "web-push";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-
+import cron from "cron";
 import { cookies } from "next/headers";
-import cron from "node-cron";
 
 export const dynamic = "force-dynamic";
 
@@ -88,10 +87,12 @@ export async function GET(_: NextRequest) {
           p256dh: String(userPushData?.p256dh_key),
         },
       };
-      webpush.sendNotification(subscription, payload);
+      const res = webpush.sendNotification(subscription, payload);
+      console.log(res);
+
       console.log("Notifications sent");
     }
   });
 
-  return NextResponse.json({ message: "hello" });
+  return NextResponse.json({ message: "running code" });
 }
