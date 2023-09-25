@@ -88,7 +88,8 @@ export async function GET(_: NextRequest) {
         },
       };
       const res = webpush.sendNotification(subscription, payload);
-      console.log(res);
+
+      console.log("THIS RES", res);
 
       console.log("Notifications sent");
     }
