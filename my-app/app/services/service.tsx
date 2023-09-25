@@ -40,6 +40,7 @@ const Services = ({ data }: ServicesProps) => {
               service_name: service.name,
               subscription_name: subscription.name,
               subscription_id: userSubscription.id,
+              yearly_subscription: subscription.yearly_subscription,
               price: subscription.price,
             });
           }
@@ -83,20 +84,38 @@ const Services = ({ data }: ServicesProps) => {
     data.services
   );
 
-  const totalPriceMonthly: number | undefined =
-    SubscriptionsAndServices?.reduce((accumulator, total) => {
-      if (total?.price !== null) {
-        return accumulator + total?.price;
+  // const totalPriceMonthly: number | undefined =
+  //   SubscriptionsAndServices?.reduce((accumulator, subscription) => {
+  //     if (subscription?.price !== null && !subscription?.yearly_subscription) {
+  //       return accumulator + subscription?.price;
+  //     }
+  //     return accumulator;
+  //   }, 0);
+
+  let totalPriceMonthly: number = 0;
+  let totalPriceYearly: number = 0;
+
+  const totalPrice = () =>
+    SubscriptionsAndServices?.forEach((subscription) => {
+      if (subscription.price !== null && !subscription?.yearly_subscription) {
+        totalPriceMonthly += subscription.price;
+      } else if (subscription.price !== null) {
+        totalPriceYearly += subscription.price;
       }
-      return accumulator;
-    }, 0);
+    });
+
+  totalPrice();
 
   return (
     <div className={`${lightMode ? "dark" : ""}`}>
       <div className="flex-1 flex flex-col w-screen justify-center gap-2 bg-white dark:bg-black h-screen">
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
-        <TotalPrice totalPriceMonthly={totalPriceMonthly} />
+        <TotalPrice
+          totalPriceMonthly={totalPriceMonthly}
+          totalPriceYearly={totalPriceYearly}
+        />
+
         <ServiceForm SubscriptionsAndServices={subser} isVisible={isVisible} />
         <ServiceList SubscriptionsAndServices={SubscriptionsAndServices} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />

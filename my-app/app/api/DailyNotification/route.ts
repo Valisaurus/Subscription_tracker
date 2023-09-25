@@ -59,8 +59,8 @@ export async function GET(_: NextRequest) {
   );
 
   subscriptionUsers?.forEach((user) => {
-    console.log("Sending notifications");
     if (calcDayDiff(String(user.trial_end_date)) === 2) {
+      console.log("Sending notifications");
       const payload = JSON.stringify({
         title: "Trial period running out!",
         body: `Hey there! Your trial for ${
@@ -89,8 +89,8 @@ export async function GET(_: NextRequest) {
         },
       };
       webpush.sendNotification(subscription, payload);
+      console.log("Notifications sent");
     }
-    console.log("Notifications sent");
   });
 
   return NextResponse.json({ message: "hello" });
