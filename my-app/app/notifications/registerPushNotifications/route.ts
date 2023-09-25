@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   const endpoint = req?.endpoint;
   const auth_key = req?.keys?.auth;
   const p256dh_key = req?.keys?.p256dh;
-  console.log("THIS IS REQ DATA: ", req);
+
   const supabase = createServerActionClient({ cookies });
 
   const {
@@ -23,8 +23,6 @@ export async function POST(request: Request) {
     auth_key,
     p256dh_key,
   });
-
-  console.log("this is res", res);
 
   if (res.error) {
     return NextResponse.redirect(

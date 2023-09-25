@@ -27,6 +27,7 @@ const calcDayDiff = (trial_end_date: string | null): number => {
 };
 
 export async function GET(_: NextRequest) {
+  console.log("ENTERED ROUTE");
   const supabase = createRouteHandlerClient({ cookies });
 
   const fetchPushData: { data: web_push_notifications } = await supabase
@@ -57,43 +58,63 @@ export async function GET(_: NextRequest) {
     process.env.NEXT_PUBLIC_VAPID_PRIVATE_KEY || ""
   );
 
-  subscriptionUsers?.forEach((user) => {
-    if (calcDayDiff(String(user.trial_end_date)) === 2) {
-      console.log("Sending notifications");
-      const payload = JSON.stringify({
-        title: "Trial period running out!",
-        body: `Hey there! Your trial for ${
-          servicesData?.find(
-            (service) =>
-              service.id ===
-              subscriptionsData?.find(
-                (subscriptions) => subscriptions.id === user.subscription_id
-              )?.service_id
-          )?.name
-        } - ${
-          subscriptionsData?.find((obj) => obj.id === user.subscription_id)
-            ?.name
-        } is about to expire in 2 days!`,
-      });
+  const createPayload = (user: subscription_user) => {
+    const payload = JSON.stringify({
+      title: "Trial period running out!",
+      body: `Hey there! Your trial for ${
+        servicesData?.find(
+          (service) =>
+            service.id ===
+            subscriptionsData?.find(
+              (subscriptions) => subscriptions.id === user.subscription_id
+            )?.service_id
+        )?.name
+      } - ${
+        subscriptionsData?.find((obj) => obj.id === user.subscription_id)?.name
+      } is about to expire in 2 days!`,
+    });
 
-      const userPushData = pushData?.find(
-        (obj) => obj.user_id === user.user_id
+    return payload;
+  };
+
+  const createWebSubscription = (userPushData: web_push_notification) => {
+    const subscription = {
+      endpoint: String(userPushData?.endpoint),
+      keys: {
+        auth: String(userPushData?.auth_key),
+        p256dh: String(userPushData?.p256dh_key),
+      },
+    };
+    return subscription;
+  };
+
+  const executeWebPush = (userSubscription: subscription_user) => {
+    let numberOfDevices = 0;
+    pushData?.forEach((userPushData) => {
+      if (userPushData.user_id === userSubscription.user_id) {
+        webpush.sendNotification(
+          createWebSubscription(userPushData),
+          createPayload(userSubscription)
+        );
+        numberOfDevices++;
+      }
+    });
+    console.log(
+      `FOUND: ${numberOfDevices} NUMBER OF ENDPOINTS ON USER, AND SENT NOTIFICATIONS`
+    );
+  };
+
+  subscriptionUsers?.forEach((userSubscription) => {
+    console.log("FOUND USER SUBSCRIPTION ON: ", userSubscription.user_id);
+    if (calcDayDiff(String(userSubscription.trial_end_date)) === 2) {
+      console.log(
+        `USER ${userSubscription.user_id} HAS SUBSCRIPTION WITH 2 DAYS UNTIL EXPIRATION`
       );
-
-      const subscription = {
-        endpoint: String(userPushData?.endpoint),
-        keys: {
-          auth: String(userPushData?.auth_key),
-          p256dh: String(userPushData?.p256dh_key),
-        },
-      };
-      const res = webpush.sendNotification(subscription, payload);
-
-      console.log("THIS RES", res);
-
-      console.log("Notifications sent");
+      executeWebPush(userSubscription);
     }
   });
 
+  console.log("SENT REQUIRED NOTIFICATIONS");
+  console.log("EXITING");
   return NextResponse.json({ message: "running code" });
 }

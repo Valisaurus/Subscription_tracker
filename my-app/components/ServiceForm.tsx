@@ -1,8 +1,6 @@
 import Messages from "@/app/login/messages";
 import { useState } from "react";
 
-export const dynamic = "force-dynamic";
-
 type ServiceFormProps = {
   SubscriptionsAndServices: {
     service_name: string | null;

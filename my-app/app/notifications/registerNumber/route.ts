@@ -20,8 +20,6 @@ export async function POST(request: Request) {
     phone: Phone,
   });
 
-  console.log("this is res", res);
-
   if (res.error) {
     return NextResponse.redirect(
       `${requestUrl.origin}/notifications?error=Could not authenticate user`,
