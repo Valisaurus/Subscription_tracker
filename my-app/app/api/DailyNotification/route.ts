@@ -89,7 +89,7 @@ export async function GET(_: NextRequest) {
         },
       };
       webpush.sendNotification(subscription, payload);
-      console.log("Notifications sent");
+      console.log("Notifications sent", webpush.WebPushError);
     }
   });
 
