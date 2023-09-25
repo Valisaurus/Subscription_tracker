@@ -55,24 +55,24 @@ export interface Database {
           name: string | null
           price: number | null
           service_id: number | null
-          trial_period_days: number | null
           trial_price: number | null
+          yearly_subscription: boolean | null
         }
         Insert: {
           id?: number
           name?: string | null
           price?: number | null
           service_id?: number | null
-          trial_period_days?: number | null
           trial_price?: number | null
+          yearly_subscription?: boolean | null
         }
         Update: {
           id?: number
           name?: string | null
           price?: number | null
           service_id?: number | null
-          trial_period_days?: number | null
           trial_price?: number | null
+          yearly_subscription?: boolean | null
         }
         Relationships: [
           {
