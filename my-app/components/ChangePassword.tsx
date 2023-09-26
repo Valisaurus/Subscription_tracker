@@ -7,7 +7,7 @@ type ChangePasswordProps = {
 
 const ChangePassword = ({ isVisible, setIsVisible }: ChangePasswordProps) => {
   return isVisible === "ChangePassword" ? (
-    <div className="flex flex-col justify-center items-center h-screen w-full absolute top-0">
+    <div className="flex flex-col justify-center items-center h-screen w-full absolute top-0 font-lato ">
       <div
         className="absolute h-screen w-full z-10 bg-white dark:bg-black opacity-50"
         onClick={() => setIsVisible("")}
