@@ -14,15 +14,26 @@ const ServiceList = ({ SubscriptionsAndServices }: ServiceListProps) => {
         action="/services/toggleService"
         method="post"
         key={subSer.subscription_id}
+        className="w-[332px]"
       >
         <input type="hidden" name="id" value={subSer.subscription_id} />
-        {subSer.service_name} - {subSer.subscription_name} {subSer.price}kr
-        <button type="submit">X</button>
+        <div className="flex justify-between items-center text-black dark:text-white  max-h-[48px] mb-[16px]">
+          <div className="border-4 border-solid  border-black dark:border-white w-[258px] py-[12px] px-[16px] overflow-hidden">
+            {`${subSer.service_name} - ${subSer.subscription_name} (${subSer.price} kr)`}
+          </div>
+
+          <button
+            type="submit"
+            className="flex justify-center items-center border-4 border-solid border-black dark:border-white w-[50px] h-[48px] p-[24px] text-[20px]"
+          >
+            X
+          </button>
+        </div>
       </form>
     )) ?? [];
 
   return (
-    <div className=" flex flex-col w-screen justify-center items-center gap-2 text-foreground px-4 text-black dark:text-white">
+    <div className=" flex flex-col w-screen justify-center items-center gap-2 text-foreground px-4 ">
       {mappedSubscriptions}
     </div>
   );

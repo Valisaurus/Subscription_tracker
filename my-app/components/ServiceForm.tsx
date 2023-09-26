@@ -28,7 +28,7 @@ const ServiceForm = ({
       <form action="services/addService" method="post" className="focus:ring-0">
         <div className="flex-1 flex flex-col w-screen justify-center items-center text-foreground px-4 text-black dark:text-white text-[20px]">
           <div className="flex flex-col justify-center items-center">
-            <div className="w-[300px]">
+            <div className="w-[332px]">
               <select
                 className="px-4 border-4 w-full h-[48px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[10px] "
                 name="subscription_id"
@@ -51,7 +51,7 @@ const ServiceForm = ({
                     type="checkbox"
                     name="has_trial"
                     onChange={() => setTrial(!trial)}
-                    className="appearance-none contents-['t'] checked:text-black checked:bg-white checked:dark:bg-black checked:dark:text-white w-[53px] h-[48px] border-4 border-black dark:border-white border-solid z-10"
+                    className="appearance-none contents-[''] checked:text-black checked:bg-white checked:dark:bg-black checked:dark:text-white w-[53px] h-[48px] border-4 border-black dark:border-white border-solid z-10"
                   />
                   <span
                     className={`absolute top-[7px] left-[8px] h-[30px] w-[30px] text-black z-0 ${
