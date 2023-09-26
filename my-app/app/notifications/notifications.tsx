@@ -1,6 +1,6 @@
 "use client";
-import LightSwitch from "@/components/LightSwitch";
-import Logo from "@/components/Logo";
+import LightSwitch from "@/components/general/LightSwitch";
+import Logo from "@/components/general/Logo";
 import { useState } from "react";
 export const dynamic = "force-dynamic";
 const ClientSideNotifications = () => {
@@ -51,7 +51,6 @@ const ClientSideNotifications = () => {
 
     const swRegistration = await registerServiceWorker();
     await Notification.requestPermission();
-
     try {
       const options = {
         applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
@@ -91,7 +90,6 @@ const ClientSideNotifications = () => {
             >
               Register notification
             </button>
-            <button onClick={unregisterServiceWorkers}>Unregister all</button>
           </div>
         </div>
       </div>
