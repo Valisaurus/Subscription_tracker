@@ -2,10 +2,10 @@ import { useState } from "react";
 
 type ServiceFormProps = {
   SubscriptionsAndServices: {
-    service_name: string | null;
     subscription_name: string | null;
     subscription_price: number | null;
     subscription_id: number;
+    service_name: string | null;
   }[];
   isVisible: boolean;
 };

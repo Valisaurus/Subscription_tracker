@@ -84,14 +84,6 @@ const Services = ({ data }: ServicesProps) => {
     data.services
   );
 
-  // const totalPriceMonthly: number | undefined =
-  //   SubscriptionsAndServices?.reduce((accumulator, subscription) => {
-  //     if (subscription?.price !== null && !subscription?.yearly_subscription) {
-  //       return accumulator + subscription?.price;
-  //     }
-  //     return accumulator;
-  //   }, 0);
-
   let totalPriceMonthly: number = 0;
   let totalPriceYearly: number = 0;
 

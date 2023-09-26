@@ -24,7 +24,8 @@ export default async function Index() {
 
   const fetchedServices: { data: services } = await supabase
     .from("services")
-    .select("*");
+    .select("*")
+    .order("name", { ascending: true });
   const services: services = fetchedServices?.data;
 
   const fetchSubscriptions: {
