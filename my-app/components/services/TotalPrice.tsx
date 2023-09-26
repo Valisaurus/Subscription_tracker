@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Slash from "../public/svgs/Slash.svg";
+import Slash from "../../public/svgs/Slash.svg";
 type TotalPriceProps = {
   totalPriceMonthly: number;
   totalPriceYearly: number;

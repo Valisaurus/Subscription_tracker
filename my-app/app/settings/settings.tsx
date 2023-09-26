@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import ChangePassword from "@/components/ChangePassword";
-import DeleteAccount from "@/components/DeleteAccount";
-import LightSwitch from "@/components/LightSwitch";
-import LogoutButton from "@/components/LogoutButton";
+import ChangePassword from "@/components/auth/ChangePassword";
+import DeleteAccount from "@/components/auth/DeleteAccount";
+import LightSwitch from "@/components/general/LightSwitch";
+import LogoutButton from "@/components/auth/LogoutButton";
 
-import Logo from "@/components/Logo";
+import Logo from "@/components/general/Logo";
 import { useState } from "react";
 
 type ClientSideSettingsProps = {

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import LightSwitch from "@/components/LightSwitch";
-import Logo from "@/components/Logo";
+import LightSwitch from "@/components/general/LightSwitch";
+import Logo from "@/components/general/Logo";
 
 const ContactUsClient = () => {
   const [lightMode, setLightMode] = useState(false);

@@ -1,6 +1,6 @@
 "use client";
 import Logo from "@/components/Logo";
-import LightSwitch from "@/components/LightSwitch";
+import LightSwitch from "@/components/general/LightSwitch";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 import { useState } from "react";

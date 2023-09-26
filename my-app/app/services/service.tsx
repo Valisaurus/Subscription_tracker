@@ -1,12 +1,12 @@
 "use client";
-import ServiceForm from "@/components/ServiceForm";
-import Logo from "@/components/Logo";
-import LightSwitch from "@/components/LightSwitch";
+import ServiceForm from "@/components/services/ServiceForm";
+import Logo from "@/components/general/Logo";
+import LightSwitch from "@/components/general/LightSwitch";
 import { useState, useEffect } from "react";
-import TotalPrice from "@/components/TotalPrice";
-import Plus from "@/components/Plus";
-import ServiceList from "@/components/ServiceList";
-import SettingsButton from "@/components/SettingsButton";
+import TotalPrice from "@/components/services/TotalPrice";
+import Plus from "@/components/services/Plus";
+import ServiceList from "@/components/services/ServiceList";
+import SettingsButton from "@/components/services/SettingsButton";
 
 type ServicesProps = {
   data: {

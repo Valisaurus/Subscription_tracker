@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import LightSwitch from "@/components/LightSwitch";
-import LoginForm from "@/components/LoginForm";
-import Logo from "@/components/Logo";
+import LightSwitch from "@/components/general/LightSwitch";
+import LoginForm from "@/components/login/LoginForm";
+import Logo from "@/components/general/Logo";
 
 export default function Login() {
   const [lightMode, setLightMode] = useState<boolean>(false);

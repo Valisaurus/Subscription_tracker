@@ -1,4 +1,3 @@
-import Messages from "@/app/login/messages";
 import { useState } from "react";
 
 type ServiceFormProps = {
@@ -85,7 +84,6 @@ const ServiceForm = ({
             <button className="px-4 mb-2 border-4 w-full border-black dark:border-white text-black dark:text-white h-[45px]">
               Add to the list
             </button>
-            <Messages />
           </div>
         </div>
       </form>

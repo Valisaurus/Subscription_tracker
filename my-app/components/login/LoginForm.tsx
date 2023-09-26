@@ -1,7 +1,7 @@
 import Messages from "@/app/login/messages";
 import { useState } from "react";
 import TermsAndConditions from "./TermsAndConditions";
-import PasswordReset from "./PasswordReset";
+import PasswordReset from "../auth/PasswordReset";
 
 type LoginFormProps = {
   setRenderTopLogo: React.Dispatch<React.SetStateAction<boolean>>;
