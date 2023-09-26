@@ -6,16 +6,16 @@ export const dynamic = "force-dynamic";
 const ClientSideNotifications = () => {
   const [lightMode, setLightMode] = useState<boolean>(false);
 
-  const notificationsSupported = () => {
-    if (
-      window?.Notification &&
-      navigator?.serviceWorker &&
-      window?.PushManager
-    ) {
-      return true;
-    }
-    return false;
-  };
+  // const notificationsSupported = () => {
+  //   if (
+  //     window?.Notification &&
+  //     navigator?.serviceWorker &&
+  //     window?.PushManager
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
   const saveSubscription = async (subscription: PushSubscription) => {
     const ORIGIN = window.location.origin;
     const BACKEND_URL = `${ORIGIN}/notifications/registerPushNotifications`;
@@ -39,12 +39,12 @@ const ClientSideNotifications = () => {
     return navigator.serviceWorker.register("/service.js");
   };
 
-  const NotificationComp = () => {
-    if (!notificationsSupported()) {
-      return <div>Install the PWA first</div>;
-    }
-    return <div>WebPush PWA</div>;
-  };
+  // const NotificationComp = () => {
+  //   if (!notificationsSupported()) {
+  //     return <div>Install the PWA first</div>;
+  //   }
+  //   return <div>WebPush PWA</div>;
+  // };
 
   const subscribe = async () => {
     await unregisterServiceWorkers();
@@ -84,18 +84,14 @@ const ClientSideNotifications = () => {
         </form>
         <div className="flex flex-col justify-center items-center w-screen mt-[10rem]">
           <div className="flex flex-col w-[50rem] h-[50rem]">
-            {NotificationComp()}
             <button
               onClick={() => {
                 subscribe();
               }}
             >
-              Register service worker
+              Register notification
             </button>
             <button onClick={unregisterServiceWorkers}>Unregister all</button>
-            <form action="/notifications/sendNotification" method="GET">
-              <button>Recieve notification</button>
-            </form>
           </div>
         </div>
       </div>
