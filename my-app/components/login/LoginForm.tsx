@@ -70,7 +70,7 @@ const LoginForm = ({ setRenderTopLogo }: LoginFormProps) => {
               }}
               className="  px-4 py-2 mb-2 w-[180px] text-black dark:text-white"
             >
-              Forgot password?
+              Glömt lösenord?
             </button>
             <Messages />
           </div>

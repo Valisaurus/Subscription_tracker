@@ -35,7 +35,7 @@ const ClientSideSettings = ({
                 onClick={() => setIsVisible("ChangePassword")}
                 className="px-4 py-2 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[40px] h-[50px] text-center"
               >
-                Change password
+                Byt lösenord
               </div>
               <div className="px-4 py-2 border-4 w-[300px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[40px] h-[50px] text-center">
                 <Link href="/contactUs">Contact us</Link>
@@ -44,7 +44,7 @@ const ClientSideSettings = ({
                 onClick={() => setIsVisible("DeleteAccount")}
                 className="px-4 py-2 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[80px] h-[50px] text-center"
               >
-                Delete Account
+                Radera konto
               </div>
 
               <LogoutButton />

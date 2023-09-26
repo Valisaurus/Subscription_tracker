@@ -14,18 +14,18 @@ const TotalPrice = ({
       <p>
         {totalPriceMonthly} kr
         <br />
-        /month{" "}
+        /månad{" "}
       </p>
       <Image src={Slash} alt="slash" />
       <p>
         {totalPriceMonthly * 12 + totalPriceYearly} kr
         <br />
-        /year
+        /år
       </p>
     </div>
   ) : (
     <div className="text-white dark:text-black">
-      <p>you have not added any services</p>
+      <p>du har inga tillagda tjänster</p>
     </div>
   );
 };

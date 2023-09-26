@@ -78,7 +78,7 @@ const ClientSideNotifications = () => {
           </label>
           <input type="tel" name="phone-number" placeholder="Phone number.." />
           <button className="border-4 border-black dark:border-white text-center">
-            Save
+            Spara
           </button>
         </form>
         <div className="flex flex-col justify-center items-center w-screen mt-[10rem]">

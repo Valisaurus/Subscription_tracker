@@ -1,5 +1,5 @@
 "use client";
-import Logo from "@/components/Logo";
+import Logo from "@/components/general/Logo";
 import LightSwitch from "@/components/general/LightSwitch";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
@@ -18,14 +18,17 @@ const VerificationPage = () => {
               CTRL+
             </h2>
             <i className="text-[20px] text-center text-black dark:text-white]">
-              Take ctrl of your streaming subscriptions
+              Ta ctrl över dina prenumerationer
             </i>
           </div>
           <div className="flex flex-col justify-center mt-[110px] h-[144px] text-[20px]">
             <i className="mb-[30px]">You've got mail!</i>
             <i>
-              To start using the service please press the link in the email to
-              verify your account.
+              <p>Titta i din inkorg!</p>
+              <p>
+                För att starta denna tjänst var god klicka på länken i mailen
+                för att verifiera ditt konto.
+              </p>
             </i>
           </div>
         </div>

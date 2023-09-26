@@ -28,7 +28,7 @@ const DeleteAccount = ({
           <input type="hidden" name="user_id" value={user_id} />
           <input type="hidden" name="user_email" value={user_email} />
           <label htmlFor="password" className="italic">
-            Are you sure you want to delete your account?
+            Är du säker på att du vill ta bort ditt konto permanent?
           </label>
           <input
             type="password"

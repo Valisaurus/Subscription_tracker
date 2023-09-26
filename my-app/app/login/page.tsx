@@ -21,7 +21,7 @@ export default function Login() {
                   CTRL+
                 </h2>
                 <i className="text-[20px] text-center text-black dark:text-white">
-                  Take ctrl of your streaming subscriptions
+                  Ta ctrl över dina prenumerationer
                 </i>
               </div>
             )}

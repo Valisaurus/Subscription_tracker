@@ -22,7 +22,7 @@ const ContactUsClient = () => {
               name="comment"
               form="contactUs"
             >
-              Enter text here...
+              Skriv ditt meddelande...
             </textarea>
 
             <button className="px-4 py-2 border-4 w-[250px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-6">

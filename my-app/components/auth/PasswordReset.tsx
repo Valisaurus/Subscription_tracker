@@ -19,16 +19,16 @@ const PasswordReset = ({ isVisible, setIsVisible }: PasswordResetProps) => {
             htmlFor="email"
             className="text-[20px] text-black dark:text-white"
           >
-            Forgot password?
+            Glömt lösenord?
           </label>
           <input
             type="email"
             name="email"
             className="px-4 py-2 border-4 w-[250px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white"
-            placeholder="Email address..."
+            placeholder="Mailadress..."
           />
           <button className="px-4 py-2 border-4 w-[200px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-6">
-            Reset password
+            Återställ lösenord
           </button>
         </form>
       </div>

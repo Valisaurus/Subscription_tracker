@@ -34,7 +34,7 @@ const ServiceForm = ({
                 required
               >
                 <option value="0" key={0}>
-                  Choose service
+                  Välj tjänst
                 </option>
                 {mappedServices}
               </select>
@@ -43,7 +43,7 @@ const ServiceForm = ({
                   htmlFor="has_trial"
                   className="text-black dark:text-white"
                 >
-                  <i>Trial period?</i>
+                  <i>Testperiod?</i>
                 </label>
                 <div className="relative">
                   <input
@@ -69,7 +69,7 @@ const ServiceForm = ({
                     htmlFor="trial_end_date"
                     className="text-black dark:text-white"
                   >
-                    Enter end of trial date:
+                    Välj slutdatum för testperiod:
                     <input
                       className="px-4 border-4 w-full border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[10px] h-[48px]"
                       type="date"
@@ -82,7 +82,7 @@ const ServiceForm = ({
               )}
             </div>
             <button className="px-4 mb-2 border-4 w-full border-black dark:border-white text-black dark:text-white h-[45px]">
-              Add to the list
+              Lägg till i listan
             </button>
           </div>
         </div>
