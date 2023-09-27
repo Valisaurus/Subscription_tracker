@@ -26,10 +26,10 @@ const ClientSideSettings = ({
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
         <div className="flex flex-col justify-center items-center">
           <div className="mt-[208px] text-center">
-            <p className="mb-[98px]">Settings</p>
+            <p className="mb-[98px]">Inställningar</p>
             <div className="w-[300px]">
               <div className="px-4 py-2 border-4 w-[300px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[40px] h-[50px] text-center">
-                <Link href="/notifications">Notifications</Link>
+                <Link href="/notifications">Notifikationer</Link>
               </div>
               <div
                 onClick={() => setIsVisible("ChangePassword")}
@@ -38,7 +38,7 @@ const ClientSideSettings = ({
                 Byt lösenord
               </div>
               <div className="px-4 py-2 border-4 w-[300px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[40px] h-[50px] text-center">
-                <Link href="/contactUs">Contact us</Link>
+                <Link href="/contactUs">Kontakta oss</Link>
               </div>
               <div
                 onClick={() => setIsVisible("DeleteAccount")}

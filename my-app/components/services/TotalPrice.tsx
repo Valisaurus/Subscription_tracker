@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Slash from "../../public/svgs/Slash.svg";
+import Slash from "../general/Slash";
 type TotalPriceProps = {
   totalPriceMonthly: number;
   totalPriceYearly: number;
@@ -16,7 +16,9 @@ const TotalPrice = ({
         <br />
         /månad{" "}
       </p>
-      <Image src={Slash} alt="slash" />
+      <div className="flex flex-col justify-center">
+        <Slash />
+      </div>
       <p>
         {totalPriceMonthly * 12 + totalPriceYearly} kr
         <br />
