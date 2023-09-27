@@ -1,27 +1,37 @@
 import { useState } from "react";
 
 type ServiceFormProps = {
-  SubscriptionsAndServices: {
-    subscription_name: string | null;
-    subscription_price: number | null;
-    subscription_id: number;
-    service_name: string | null;
-  }[];
+  Subscriptions:
+    | {
+        name: string | null;
+        price: number | null;
+        id: number;
+        service_id: number | null;
+      }[]
+    | null;
+  Services: { name: string | null; id: number }[] | null;
   isVisible: boolean;
 };
 
 const ServiceForm = ({
-  SubscriptionsAndServices,
+  Subscriptions,
+  Services,
   isVisible,
 }: ServiceFormProps) => {
   const [trial, setTrial] = useState(false);
-  const mappedServices =
-    SubscriptionsAndServices?.map((subSer) => (
-      <option key={subSer.subscription_id} value={subSer.subscription_id}>
-        {subSer.service_name} - {subSer.subscription_name}{" "}
-        {subSer.subscription_price}kr
-      </option>
-    )) ?? [];
+
+  const mappedServices = Services?.map((service) => (
+    <optgroup label={service.name ?? ""} key={service.id}>
+      {Subscriptions?.filter(
+        (subscription) => service.id === subscription.service_id
+      ).map((subscription) => (
+        <option key={subscription.id} value={subscription.id}>
+          {subscription.name} {subscription.price}kr
+        </option>
+      ))}
+    </optgroup>
+  ));
+
   return isVisible ? (
     <div>
       <form action="services/addService" method="post" className="focus:ring-0">

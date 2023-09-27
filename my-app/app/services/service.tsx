@@ -98,6 +98,37 @@ const Services = ({ data }: ServicesProps) => {
 
   totalPrice();
 
+  type Subscriptions = {
+    name: string | null;
+    price: number | null;
+    id: number;
+    service_id: number | null;
+  };
+
+  const subscriptions: Subscriptions[] | null =
+    data?.subscriptions !== null
+      ? data.subscriptions
+          .map((subscription) => {
+            return {
+              name: subscription.name,
+              price: subscription.price,
+              id: subscription.id,
+              service_id: subscription.service_id,
+            };
+          })
+          .sort((a, b) => (a.price || 0) - (b.price || 0))
+      : null;
+
+  const services: { name: string | null; id: number }[] | null =
+    data?.services !== null
+      ? data.services.map((service: { name: string | null; id: number }) => ({
+          name: service.name,
+          id: service.id,
+        }))
+      : null;
+
+  console.log("THIS IS SUBSCRIPTIONS: ", subscriptions);
+  console.log("THIS IS SERVICENAMES: ", services);
   return (
     <div className={`${lightMode ? "dark" : ""}`}>
       <div className="flex-1 flex flex-col w-screen justify-center gap-2 bg-white dark:bg-black h-screen">
@@ -108,7 +139,11 @@ const Services = ({ data }: ServicesProps) => {
           totalPriceYearly={totalPriceYearly}
         />
 
-        <ServiceForm SubscriptionsAndServices={subser} isVisible={isVisible} />
+        <ServiceForm
+          Subscriptions={subscriptions}
+          Services={services}
+          isVisible={isVisible}
+        />
         <ServiceList SubscriptionsAndServices={SubscriptionsAndServices} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />
         <SettingsButton />
