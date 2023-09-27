@@ -11,7 +11,7 @@ const PasswordReset = ({ isVisible, setIsVisible }: PasswordResetProps) => {
       ></div>
       <div className="absolute w-[320px] h-[250px] border-4 border-black dark:border-white bg-white dark:bg-black z-50 ">
         <form
-          action="/auth/reset-password"
+          action="/auth/reset-PW-Email"
           method="post"
           className="flex flex-col justify-around items-center text-center w-[320px] h-[250px] p-4"
         >

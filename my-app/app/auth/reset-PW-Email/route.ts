@@ -11,18 +11,22 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const email = String(formData.get("email"));
   const supabase = createRouteHandlerClient({ cookies });
+
   const res = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${requestUrl.origin}/`,
+    redirectTo: `${requestUrl.origin}/reset-password`,
   });
 
-  if (res) {
+  if (res.error) {
     return NextResponse.redirect(`${requestUrl.origin}/login`, {
       // a 301 status is required to redirect from a POST to a GET route
       status: 301,
     });
   }
 
-  return NextResponse.redirect(`${requestUrl.origin}/verification`, {
-    status: 301,
-  });
+  return NextResponse.redirect(
+    `${requestUrl.origin}/verification/reset-password`,
+    {
+      status: 301,
+    }
+  );
 }
