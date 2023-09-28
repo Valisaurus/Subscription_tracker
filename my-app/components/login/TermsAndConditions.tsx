@@ -127,7 +127,7 @@ const TermsAndConditions = ({ email, password }: TermsAndConditionsProps) => {
         <input type="hidden" name="email" value={email} />
         <input type="hidden" name="password" value={password} />
         <button className="w-[250px] h-[40px] border-black border-4 dark:border-white text-black dark:text-white mt-[30px]">
-          Accept
+          Godkänn
         </button>
       </form>
     </div>
