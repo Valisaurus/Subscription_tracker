@@ -39,7 +39,7 @@ const ServiceForm = ({
           <div className="flex flex-col justify-center items-center">
             <div className="w-[332px]">
               <select
-                className="px-4 border-4 w-full h-[48px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[10px] "
+                className="px-4 border-4 w-full h-[48px] border-black bg-inherit text-black dark:border-white dark:bg-black dark:text-white mb-[16px] "
                 name="subscription_id"
                 required
               >

@@ -37,7 +37,7 @@ const LoginForm = ({ setRenderTopLogo }: LoginFormProps) => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="email@here.com"
+                placeholder="Mailadress..."
                 required
               />
               <input
@@ -46,12 +46,12 @@ const LoginForm = ({ setRenderTopLogo }: LoginFormProps) => {
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="password"
+                placeholder="Lösenord..."
                 required
               />
             </div>
             <button className="bg-white dark:bg-black border-4 border-black dark:border-white px-4 py-2  w-[250px] text-black dark:text-white mb-[30px]">
-              Login
+              Logga in
             </button>
             <button
               className="bg-white dark:bg-black border-4 border-black dark:border-white px-4 py-2 w-[200px] text-black dark:text-white mb-[30px]"
@@ -61,7 +61,7 @@ const LoginForm = ({ setRenderTopLogo }: LoginFormProps) => {
                 setRenderTopLogo(true);
               }}
             >
-              Create User
+              Skapa användare
             </button>
             <button
               onClick={(e: any) => {

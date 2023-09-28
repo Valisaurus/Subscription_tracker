@@ -131,7 +131,7 @@ const Services = ({ data }: ServicesProps) => {
   console.log("THIS IS SERVICENAMES: ", services);
   return (
     <div className={`${lightMode ? "dark" : ""}`}>
-      <div className="flex-1 flex flex-col w-screen justify-center gap-2 bg-white dark:bg-black h-screen">
+      <div className="flex-1 flex flex-col w-screen justify-center gap-[16px] bg-white dark:bg-black h-screen">
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
         <TotalPrice
