@@ -25,7 +25,7 @@ const ClientSideResetPassword = () => {
               <input type="password" name="password" />
             </div>
             <button className="px-4 mb-2 border-4 w-full border-black dark:border-white text-black dark:text-white h-[50px]">
-              Updatera
+              Uppdatera
             </button>
           </form>
         </div>
