@@ -11,7 +11,7 @@ const ServiceList = ({ SubscriptionsAndServices }: ServiceListProps) => {
   const mappedSubscriptions =
     SubscriptionsAndServices?.map((subSer) => (
       <form
-        action="/services/toggleService"
+        action="/api/toggleService"
         method="post"
         key={subSer.subscription_id}
         className="w-[332px]"
