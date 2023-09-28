@@ -1,18 +1,15 @@
-import { useState } from "react";
-
 type BlurProps = {
-  isVisible: string;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  settingsVisible: boolean;
+  setSettingsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Blur = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+const Blur = ({ settingsVisible, setSettingsVisible }: BlurProps) => {
   return (
     <>
-      {isVisible ? (
+      {settingsVisible ? (
         <div
           className="absolute h-screen w-full z-10 bg-white dark:bg-black opacity-50"
-          onClick={() => setIsVisible(false)}
+          onClick={() => setSettingsVisible(false)}
         ></div>
       ) : (
         <></>

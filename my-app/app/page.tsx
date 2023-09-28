@@ -28,6 +28,12 @@ export default async function Index() {
     .order("name", { ascending: true });
   const services: services = fetchedServices?.data;
 
+  const fetchWebPushData: { data: web_push_notifications } = await supabase
+    .from("web_push_notifications")
+    .select("*")
+    .match({ user_id: user?.id });
+  const web_push_notifications: web_push_notifications = fetchWebPushData.data;
+
   const fetchSubscriptions: {
     data: subscriptions;
   } = await supabase.from("subscriptions").select("*");
@@ -42,10 +48,23 @@ export default async function Index() {
   const subscriptions_users: subscriptions_users =
     fetchSubscriptions_users?.data;
 
+  const userID: string | undefined = user?.id;
+  const userEmail: string | undefined = user?.email;
+
   const data: {
     subscriptions: subscriptions;
     services: services;
     subscriptions_users: subscriptions_users;
-  } = { subscriptions, services, subscriptions_users };
+    web_push_notifications: web_push_notifications;
+    userID: string | undefined;
+    userEmail: string | undefined;
+  } = {
+    subscriptions,
+    services,
+    subscriptions_users,
+    web_push_notifications,
+    userID,
+    userEmail,
+  };
   return <Services data={data} />;
 }
