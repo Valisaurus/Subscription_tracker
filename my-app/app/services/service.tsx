@@ -7,6 +7,7 @@ import TotalPrice from "@/components/services/TotalPrice";
 import Plus from "@/components/services/Plus";
 import ServiceList from "@/components/services/ServiceList";
 import SettingsButton from "@/components/services/SettingsButton";
+import Settings from "@/components/settings/settings";
 
 type ServicesProps = {
   data: {
@@ -19,6 +20,7 @@ type ServicesProps = {
 const Services = ({ data }: ServicesProps) => {
   const [lightMode, setLightMode] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
 
   const userSubscriptionsAndServices = (
     subscriptions: subscriptions,
@@ -127,8 +129,6 @@ const Services = ({ data }: ServicesProps) => {
         }))
       : null;
 
-  console.log("THIS IS SUBSCRIPTIONS: ", subscriptions);
-  console.log("THIS IS SERVICENAMES: ", services);
   return (
     <div className={`${lightMode ? "dark" : ""}`}>
       <div className="flex-1 flex flex-col w-screen justify-center gap-2 bg-white dark:bg-black h-screen">
@@ -146,7 +146,11 @@ const Services = ({ data }: ServicesProps) => {
         />
         <ServiceList SubscriptionsAndServices={SubscriptionsAndServices} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />
-        <SettingsButton />
+        {/* <SettingsButton /> */}
+        <Settings
+          settingsVisible={settingsVisible}
+          setSettingsVisible={setSettingsVisible}
+        />
       </div>
     </div>
   );

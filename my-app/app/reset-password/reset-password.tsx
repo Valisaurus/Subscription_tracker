@@ -1,7 +1,7 @@
 "use client";
 import Logo from "@/components/general/Logo";
 import LightSwitch from "@/components/general/LightSwitch";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const ClientSideResetPassword = () => {
