@@ -46,6 +46,7 @@ const Services = ({ data }: ServicesProps) => {
               subscription_id: userSubscription.id,
               yearly_subscription: subscription.yearly_subscription,
               price: subscription.price,
+              subscription_trial_date: userSubscription.trial_end_date,
             });
           }
         }
@@ -93,9 +94,16 @@ const Services = ({ data }: ServicesProps) => {
 
   const totalPrice = () =>
     SubscriptionsAndServices?.forEach((subscription) => {
-      if (subscription.price !== null && !subscription?.yearly_subscription) {
+      if (
+        subscription.price !== null &&
+        !subscription?.yearly_subscription &&
+        subscription.subscription_trial_date === null
+      ) {
         totalPriceMonthly += subscription.price;
-      } else if (subscription.price !== null) {
+      } else if (
+        subscription.price !== null &&
+        subscription.subscription_trial_date === null
+      ) {
         totalPriceYearly += subscription.price;
       }
     });
