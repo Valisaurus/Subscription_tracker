@@ -22,7 +22,6 @@ const VerificationPage = () => {
             </i>
           </div>
           <div className="flex flex-col justify-center mt-[110px] h-[144px] text-[20px]">
-            <i className="mb-[30px]">You've got mail!</i>
             <i>
               <p>Titta i din inkorg!</p>
               <p>Klicka på länken i mailen för att återsälla ditt lösenord.</p>
