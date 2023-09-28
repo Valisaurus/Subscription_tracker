@@ -4,6 +4,7 @@ type ServiceListProps = {
     subscription_name: string | null;
     subscription_id: number;
     price: number | null;
+    subscription_trial_date: string | null;
   }>;
 };
 
@@ -19,7 +20,10 @@ const ServiceList = ({ SubscriptionsAndServices }: ServiceListProps) => {
         <input type="hidden" name="id" value={subSer.subscription_id} />
         <div className="flex justify-between items-center text-black dark:text-white  max-h-[48px] mb-[16px]">
           <div className="border-4 border-solid  border-black dark:border-white w-[258px] py-[12px] px-[16px] overflow-hidden">
-            {`${subSer.service_name} - ${subSer.subscription_name} (${subSer.price} kr)`}
+            {`${subSer.service_name} - ${subSer.subscription_name} (${
+              subSer.subscription_trial_date === null ? subSer.price : 0
+            } kr)`}
+            <br />
           </div>
 
           <button

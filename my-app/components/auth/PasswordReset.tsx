@@ -9,7 +9,7 @@ const PasswordReset = ({ isVisible, setIsVisible }: PasswordResetProps) => {
         className="absolute h-screen w-full z-10 bg-white dark:bg-black opacity-50"
         onClick={() => setIsVisible(false)}
       ></div>
-      <div className="absolute w-[320px] h-[250px] z-50 ">
+      <div className="absolute w-[320px] h-[250px] z-50">
         <div
           onClick={() => setIsVisible(false)}
           className="absolute right-0 bottom-[270px] bg-white dark:bg-black flex justify-center items-center border-4 border-solid border-black dark:border-white w-[50px] h-[48px] p-[24px] text-[20px]"
