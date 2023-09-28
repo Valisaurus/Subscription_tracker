@@ -14,7 +14,7 @@ const Notifications = ({ setActivePopUp, data }: NotificationsProps) => {
 
   const saveSubscription = async (subscription: PushSubscription) => {
     const ORIGIN = window.location.origin;
-    const BACKEND_URL = `${ORIGIN}/notifications/registerPushNotifications`;
+    const BACKEND_URL = `${ORIGIN}/api/registerPushNotifications`;
 
     const response = await fetch(BACKEND_URL, {
       method: "POST",
