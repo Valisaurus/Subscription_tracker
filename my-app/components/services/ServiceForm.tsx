@@ -34,7 +34,7 @@ const ServiceForm = ({
 
   return isVisible ? (
     <div>
-      <form action="services/addService" method="post" className="focus:ring-0">
+      <form action="/api/addService" method="post" className="focus:ring-0">
         <div className="flex-1 flex flex-col w-screen justify-center items-center text-foreground px-4 text-black dark:text-white text-[20px]">
           <div className="flex flex-col justify-center items-center">
             <div className="w-[332px]">

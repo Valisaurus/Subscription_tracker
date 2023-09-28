@@ -6,19 +6,23 @@ import { useState, useEffect } from "react";
 import TotalPrice from "@/components/services/TotalPrice";
 import Plus from "@/components/services/Plus";
 import ServiceList from "@/components/services/ServiceList";
-import SettingsButton from "@/components/services/SettingsButton";
+import Settings from "@/components/settings/settings";
 
 type ServicesProps = {
   data: {
     subscriptions: subscriptions;
     services: services;
     subscriptions_users: subscriptions_users;
+    web_push_notifications: web_push_notifications;
+    userID: string | undefined;
+    userEmail: string | undefined;
   };
 };
 
 const Services = ({ data }: ServicesProps) => {
   const [lightMode, setLightMode] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
 
   const userSubscriptionsAndServices = (
     subscriptions: subscriptions,
@@ -42,6 +46,7 @@ const Services = ({ data }: ServicesProps) => {
               subscription_id: userSubscription.id,
               yearly_subscription: subscription.yearly_subscription,
               price: subscription.price,
+              subscription_trial_date: userSubscription.trial_end_date,
             });
           }
         }
@@ -89,9 +94,16 @@ const Services = ({ data }: ServicesProps) => {
 
   const totalPrice = () =>
     SubscriptionsAndServices?.forEach((subscription) => {
-      if (subscription.price !== null && !subscription?.yearly_subscription) {
+      if (
+        subscription.price !== null &&
+        !subscription?.yearly_subscription &&
+        subscription.subscription_trial_date === null
+      ) {
         totalPriceMonthly += subscription.price;
-      } else if (subscription.price !== null) {
+      } else if (
+        subscription.price !== null &&
+        subscription.subscription_trial_date === null
+      ) {
         totalPriceYearly += subscription.price;
       }
     });
@@ -127,18 +139,15 @@ const Services = ({ data }: ServicesProps) => {
         }))
       : null;
 
-  console.log("THIS IS SUBSCRIPTIONS: ", subscriptions);
-  console.log("THIS IS SERVICENAMES: ", services);
   return (
     <div className={`${lightMode ? "dark" : ""}`}>
-      <div className="flex-1 flex flex-col w-screen justify-center gap-[16px] bg-white dark:bg-black h-screen">
+      <div className="flex-1 flex flex-col w-screen justify-center gap-[32px] bg-white dark:bg-black h-screen">
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
         <TotalPrice
           totalPriceMonthly={totalPriceMonthly}
           totalPriceYearly={totalPriceYearly}
         />
-
         <ServiceForm
           Subscriptions={subscriptions}
           Services={services}
@@ -146,7 +155,14 @@ const Services = ({ data }: ServicesProps) => {
         />
         <ServiceList SubscriptionsAndServices={SubscriptionsAndServices} />
         <Plus isVisible={isVisible} setIsVisible={setIsVisible} />
-        <SettingsButton />
+
+        <Settings
+          userID={data.userID}
+          userEmail={data.userEmail}
+          web_push_notifications={data.web_push_notifications}
+          settingsVisible={settingsVisible}
+          setSettingsVisible={setSettingsVisible}
+        />
       </div>
     </div>
   );

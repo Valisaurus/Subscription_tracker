@@ -9,7 +9,7 @@ const TotalPrice = ({
   totalPriceMonthly,
   totalPriceYearly,
 }: TotalPriceProps) => {
-  return totalPriceMonthly ? (
+  return totalPriceMonthly || totalPriceYearly ? (
     <div className="flex mw-full m-[1rem] items-center justify-around text-black dark:text-white text-[40px]">
       <p>
         {totalPriceMonthly} kr
