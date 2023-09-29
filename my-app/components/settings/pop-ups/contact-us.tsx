@@ -1,3 +1,4 @@
+import Arrow from "../../general/Arrow";
 type ContactUsProps = {
   setActivePopUp: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -27,7 +28,9 @@ const ContactUs = ({ setActivePopUp }: ContactUsProps) => {
           className="flex flex-col justify-center items-center border-4 border-black dark:border-white text-center h-[48px] w-[172px]"
           onClick={() => setActivePopUp("")}
         >
-          Tillbaka
+          <div className="flex flex-row gap-[16px]">
+            <Arrow /> Tillbaka
+          </div>
         </div>
       </div>
     </div>

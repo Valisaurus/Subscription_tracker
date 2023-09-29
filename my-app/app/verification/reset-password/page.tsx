@@ -13,15 +13,15 @@ const VerificationPage = () => {
         <Logo />
         <LightSwitch lightMode={lightMode} setLightMode={setLightMode} />
         <div className="flex flex-col justify-around items-center w-[332px]">
-          <div className="mt-[200px]">
-            <h2 className="text-6xl text-center text-black dark:text-white">
+          <div className="mt-[200px] ">
+            <h2 className="text-6xl text-center text-black dark:text-white mb-[24px]">
               CTRL+
             </h2>
-            <i className="text-[20px] text-center text-black dark:text-white]">
+            <i className="text-[20px] text-center text-black dark:text-white">
               Ta ctrl över dina prenumerationer
             </i>
           </div>
-          <div className="flex flex-col justify-center mt-[110px] h-[144px] text-[20px]">
+          <div className="flex flex-col justify-center mt-[110px] h-[144px] text-[20px] text-black dark:text-white">
             <i>
               <p>Titta i din inkorg!</p>
               <p>Klicka på länken i mailen för att återsälla ditt lösenord.</p>

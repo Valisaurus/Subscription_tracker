@@ -1,3 +1,4 @@
+import Arrow from "../../general/Arrow";
 type DeleteAccountProps = {
   setActivePopUp: React.Dispatch<React.SetStateAction<string>>;
   userID: string | undefined;
@@ -38,7 +39,9 @@ const DeleteAccount = ({
           className="flex flex-col justify-center items-center border-4 border-black dark:border-white text-center h-[48px] w-[172px]"
           onClick={() => setActivePopUp("")}
         >
-          Tillbaka
+          <div className="flex flex-row gap-[16px]">
+            <Arrow /> Tillbaka
+          </div>
         </div>
       </div>
     </div>
