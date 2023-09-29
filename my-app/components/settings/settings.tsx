@@ -45,7 +45,7 @@ const Settings = ({
           {activePopUp === "" ? (
             <div className="flex flex-col justify-center items-center gap-[32px]">
               <div className="py-[24px]">
-                <i>inställningar</i>
+                <i>Inställningar</i>
               </div>
               <div className="flex flex-col items-center gap-[24px] w-full">
                 <div
